@@ -1,0 +1,1 @@
+export { AdminItemsPage as default } from "./ItemsPage/AdminItemsPage"
