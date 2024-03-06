@@ -3,7 +3,7 @@
     public class Basket
     {
         public int Id { get; set; }
-        public List<BasketItem> BasketItems { get; set; } = [];
+        public List<BasketItem> BasketItems { get; set; }
 
     }
 }

@@ -13,6 +13,7 @@ namespace eShop.Controllers
         public async Task<IActionResult> GetBasketItems(CancellationToken cancellationToken)
         {
             return Ok(await eShopDbContext.BasketItems.ToListAsync(cancellationToken));
+            
         }
 
         [HttpPost]
@@ -26,7 +27,7 @@ namespace eShop.Controllers
                 return BadRequest("BasketItem with provided Id alredy created");
             }
 
-            await eShopDbContext.BasketItems.AddAsync(basketItemDto);
+            await eShopDbContext.BasketItems.AddAsync(basketItemDto, cancellationToken);
             return Ok("BasketItem with provided Id succsessfuly created");
         }
 
