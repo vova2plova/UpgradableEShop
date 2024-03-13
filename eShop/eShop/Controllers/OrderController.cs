@@ -1,4 +1,5 @@
-﻿using eShop.Models;
+﻿using eShop.Data;
+using eShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;

@@ -1,0 +1,79 @@
+.main {
+  background-color: #14212a;
+}
+
+.NavMenu{
+  background-color: #01607a;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #01607a;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+$breakpoint-xs: 480px;
+$breakpoint-s: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-l: 1200px;
+$breakpoint-xl: 1900px;
+
+@mixin x-small {
+  @media screen and (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media screen and (min-width: $breakpoint-s) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media screen and (min-width: $breakpoint-l) {
+    @content;
+  }
+}
+
+@mixin x-large {
+  @media screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}

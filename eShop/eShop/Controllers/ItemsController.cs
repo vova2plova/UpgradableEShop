@@ -1,4 +1,5 @@
-﻿using eShop.Models;
+﻿using eShop.Data;
+using eShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +10,28 @@ namespace eShop.Controllers
     [Route("api/[controller]")]
     public class ItemsController(EShopDbContext eShopDbContext) : ControllerBase
     {
+        const int startPage = 1;
+        const int defaultPageSize = 10;
+
         [HttpGet]
-        public async Task<IActionResult> GetItems(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetItems(
+            [FromQuery] int page,
+            [FromQuery] int pageSize,
+            CancellationToken cancellationToken)
         {
-            return Ok(await eShopDbContext.Items.ToListAsync(cancellationToken));
+            if (page == 0)
+                page = startPage;
+            if (pageSize == 0)
+                pageSize = defaultPageSize;
+
+            return Ok(await eShopDbContext
+                .Items
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Include(i => i.DiscountPolicy)
+                .Include(i => i.Brand)
+                .Include(i => i.Category)
+                .ToListAsync(cancellationToken));
         }
 
         [HttpPost]
@@ -42,15 +61,6 @@ namespace eShop.Controllers
             {
                 return NotFound("Item with provided Id not found");
             }
-
-            item.Brand = itemDto.Brand;
-            item.Name = itemDto.Name;
-            item.Description = itemDto.Description;
-            item.Category = itemDto.Category;
-            item.DiscountPolicy = itemDto.DiscountPolicy;
-            item.Images = itemDto.Images;
-            item.IsHidden = itemDto.IsHidden;
-            item.MainImageUrl = itemDto.MainImageUrl;
 
             await eShopDbContext.SaveChangesAsync(cancellationToken);
 

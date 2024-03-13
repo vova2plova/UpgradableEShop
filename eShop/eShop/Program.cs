@@ -1,6 +1,5 @@
-using eShop;
+using eShop.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +18,13 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<EShopDbContext>(options =>
+builder.Services.AddDbContextFactory<EShopDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PgConnection"));
-    //options.UseInMemoryDatabase("EShop");
+    options.UseInMemoryDatabase("testDb");
+    //options.UseNpgsql(builder.Configuration.GetConnectionString("PgConnection"));
 });
+
+builder.Services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
 
 var app = builder.Build();
 
@@ -31,6 +32,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var databaseInitializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
+    databaseInitializer.Initialize();
 }
 
 app.UseCors(MyAllowSpecificOrigins);
