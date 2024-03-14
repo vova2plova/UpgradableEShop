@@ -5,13 +5,21 @@ import AdminItemsPage from './pages/admin/admin_exports';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container">
       <nav className='NavMenu'>
-        <ul>
-          <li>
-            <Link to="items">Каталог</Link>
-          </li>
-        </ul>
+          <div className='gridItems'>
+            <Link to="items" className='Link-Logo'>Firefly</Link>
+          </div>
+          <div className='gridItems'>
+            <Link to="items" className='Link'>О Компании</Link>
+            <Link to="items" className='Link'>Каталог</Link>
+            <Link to="items" className='Link'>Информация</Link>
+          </div>
+          <div className='gridItems'>
+            <Link to="items" className='Link'>Корзина</Link>
+            <Link to="items" className='Link'>Избранное</Link>
+            <Link to="items" className='Link'>Кабинет</Link>
+          </div>
       </nav>
       <div className='main'>
         <Routes>

@@ -15,15 +15,10 @@ namespace eShop.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetItems(
-            [FromQuery] int page,
-            [FromQuery] int pageSize,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken,
+            [FromQuery] int page = startPage,
+            [FromQuery] int pageSize = defaultPageSize)
         {
-            if (page == 0)
-                page = startPage;
-            if (pageSize == 0)
-                pageSize = defaultPageSize;
-
             return Ok(await eShopDbContext
                 .Items
                 .Skip((page - 1) * pageSize)

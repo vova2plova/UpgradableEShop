@@ -3,6 +3,7 @@ import './AdminItemsPage.scss';
 import Grid from '@mui/material/Grid';
 import { IItem } from '../../../Entities/Item';
 import { ItemCardComponent } from '../../../components/ItemCard/ItemCardComponent';
+import { CategoryCardComponent } from '../../../components/CategoryCard/CategoryCardComponent';
 import { useLocation } from "react-router-dom"
 
 export function AdminItemsPage() {
@@ -22,7 +23,17 @@ export function AdminItemsPage() {
   })
 
   return (
-      <Grid container spacing={6}>
+    <div className='PopularCategoryText'>Популярные категории
+      <div className='PopularCategory'>
+        <CategoryCardComponent displayName='Настенные' categoryImage='https://i.imgur.com/U3ewjC5.png'/>
+        <CategoryCardComponent displayName='Встроенные' categoryImage='https://i.imgur.com/xO2jyph.png'/>
+        <CategoryCardComponent displayName='Встроенные' categoryImage='https://i.imgur.com/D6UpQdt.png'/>
+        <CategoryCardComponent displayName='Потолочные' categoryImage='https://i.imgur.com/YP8VQ3I.png'/>
+      </div>
+    </div>
+
+
+      /*<Grid container spacing={6}>
         {Items?.map((item : IItem) => {
           return (
             <Grid xs={6}>
@@ -42,5 +53,6 @@ export function AdminItemsPage() {
           )
         })}
       </Grid>
+      */
   );
 }
