@@ -14,9 +14,7 @@ namespace ImageHostingService.Controllers
         {
             if (uploadedFile != null)
             {
-                // путь к папке Files
                 string path = "/Files/" + uploadedFile.FileName;
-                // сохраняем файл в папку Files в каталоге wwwroot
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
