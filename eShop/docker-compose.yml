@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  eshop:
+    image: ${DOCKER_REGISTRY-}eshop
+    build:
+      context: .
+      dockerfile: eShop/Dockerfile
+  client:
+    image: client
+    build: 
+      context: ../eshop_react_frontend
+      dockerfile: Dockerfile

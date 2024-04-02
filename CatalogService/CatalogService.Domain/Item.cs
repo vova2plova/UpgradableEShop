@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,72 +16,165 @@ namespace CatalogService.Domain
         /// Идентификатор
         /// </summary>
         public int Id { get; init; }
+
         /// <summary>
         /// Название
         /// </summary>
         public string DisplayName { get; init; }
+
         /// <summary>
         /// Цена
         /// </summary>
-        public decimal Price { get; init; }
+        public decimal Price 
+        {
+            // Применение скидки
+            get => DiscountPolicy.Apply(_price);
+        }
+
+        public decimal _price;
+
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public DiscountPolicy DiscountPolicy { get; init; }
+        public DiscountPolicy DiscountPolicy { get; private set; }
+
         /// <summary>
         /// Рейтинг
         /// </summary>
-        public decimal Rating { get; init; }
+        public decimal Rating => _rating;
+
+        public decimal _rating;
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
         public Brand Brand { get; init; }
+
         /// <summary>
         /// Список категорий
         /// </summary>
-        public List<Category> Categories { get; init; }
+        public IReadOnlyCollection<Category> Categories => _categories;
+
+        public List<Category> _categories = new List<Category>();
+
         /// <summary>
         /// Картинка для карточки товара
         /// </summary>
         public string Thumbnail { get; init; }
+
         /// <summary>
         /// Список изображений
         /// </summary>
-        public List<string>? Images { get; init; }
+        public IReadOnlyCollection<string>? Images { get; init; } = new List<string>();
+
         /// <summary>
         /// Характеристики товара
         /// </summary>
-        public Dictionary<string, string> Characteristic { get; init; }
+        public IReadOnlyDictionary<string, string> Characteristic => _characteristic;
+
+        private Dictionary<string, string> _characteristic = new Dictionary<string, string>();
+
+        public FeedbackSystem FeedbackSystem { get; } = new FeedbackSystem();
+
+        public bool IsFavorite { get; init; }
+        public bool IsVisible { get; init; }
+
+        public void AddCharacteristic(string key, string value)
+        {
+            _characteristic.Add(key, value);
+        }
+
+        public void UpdateDiscountPolicy(DiscountPolicy discountPolicy)
+        {
+            DiscountPolicy = discountPolicy;
+        }
+
+        public void AddCategory(Category category)
+        {
+            _categories.Add(category);
+        }
     }
 
     /// <summary>
-    /// Категория
+    /// Рейтинговая система
     /// </summary>
-    public class Category
+    public class FeedbackSystem
     {
         /// <summary>
-        /// Идентификатор
+        /// Рейтинг товара
         /// </summary>
-        public int Id { get; init; }
+        public decimal Rating => _rating / CountFeedbacks;
+
+        private int _rating;
+
         /// <summary>
-        /// Название
+        /// Кол-во отзывов
         /// </summary>
-        public string DisplayName { get; init; }
+        public int CountFeedbacks => _countFeedbacks;
+
+        private int _countFeedbacks;
+
+        /// <summary>
+        /// Список отзывов
+        /// </summary>
+        public IReadOnlyCollection<Feedback> Feedbacks => _feedbacks;
+
+        private List<Feedback> _feedbacks = new List<Feedback>();
+
+        /// <summary>
+        /// Добавление отзыва
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="rating">Рейтинг товара</param>
+        /// <param name="advantages">Достоинства</param>
+        /// <param name="disadvantages">Недостатки</param>
+        /// <param name="comment">Комментарий</param>
+        /// <param name="images">Список изображений</param>
+        public void AddFeedback(int userId, int rating, string advantages, string disadvantages, string comment, IReadOnlyCollection<string> images)
+        {
+            _feedbacks.Add(new Feedback
+            {
+                UserId = userId,
+                Rating = rating,
+                Advantages = advantages,
+                Disadvantages = disadvantages,
+                Comment = comment,
+                Images = images
+            });
+
+            _rating += rating;
+            _countFeedbacks++;
+        }
+
     }
 
     /// <summary>
-    /// 
+    /// Отзыв
     /// </summary>
-    public class Brand
+    public class Feedback
     {
-        public int Id { get; init; }
-        public string DisplayName { get; init; }
-        public string Logo { get; init; }
-    }
-
-    public class DiscountPolicy
-    {
-        public int Id { get; init; }
-        public decimal Percentage { get; init; }
+        /// <summary>
+        /// Идентификатор пользователя
+        /// </summary>
+        public int UserId { get; init; }
+        /// <summary>
+        /// Оценка товару
+        /// </summary>
+        public int Rating { get; init; }
+        /// <summary>
+        /// Достоинства
+        /// </summary>
+        public string Advantages { get; init; }
+        /// <summary>
+        /// Недостатки
+        /// </summary>
+        public string Disadvantages{ get; init; }
+        /// <summary>
+        /// Комментарий
+        /// </summary>
+        public string Comment { get; init; }
+        /// <summary>
+        /// Прикреплённые изображения
+        /// </summary>
+        public IReadOnlyCollection<string> Images { get; init; }
     }
 }

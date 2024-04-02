@@ -1,4 +1,7 @@
-﻿using eShop.Models;
+﻿using eShop.DataTransferObjects;
+using eShop.EntityConfiguration;
+using eShop.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace eShop.Data
@@ -11,10 +14,17 @@ namespace eShop.Data
         public DbSet<Item> Items { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         public EShopDbContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new OrderEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ItemEntityTypeConfiguration());
         }
     }
 }

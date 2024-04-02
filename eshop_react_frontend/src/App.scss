@@ -1,14 +1,11 @@
 @import './base/text.scss';
 
-.main {
-  background-color: lightcyan;
-}
-
 .container {
   max-width: 1180px;
   width: 100%;
   margin: 0 auto;
   padding: 0 25px;
+
   @media (max-width: 992px) {
     padding: 0 20px;
   }
@@ -21,13 +18,50 @@
 }
 
 .App {
-  display: table-cell;
-  vertical-align: middle;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .gridItems{
-  margin: 16px;
+  &-Logo{
+    display: flex;
+    justify-content: flex-start;
+  }
+  &-Links{
+    display: flex;
+    justify-content: flex-end;
+  }
+  &-Icons{
+    display: flex;
+    justify-content: flex-start;
+  }
+  &-Bar{
+    background-color: #696969;
+    width: 0.5px;
+    height: 100%;
+    margin-left: 32px;
+  }
+  
+}
+
+.NavMenu{
+  background-color: #FFFF;
+  width: 100%;
+  margin: 0 auto;
+  height: 100px;
+  box-shadow: 0px 2px 6px 0px #0000001A;
   display: flex;
+  justify-content: center;
+}
+
+.NavItems{
+  width: 1180px;
+  display: grid;
+  grid-template-columns: min-content auto min-content min-content;
+  align-items: center;
+  align-content: center;
 }
 
 .Link{
@@ -35,24 +69,18 @@
     @include ZenKakuGothicAntique-12-regular;
     font-size: 40px;
     text-decoration: none;
-    margin: 0px 8px;
-    color: black;
+    margin: 0px 32px;
+    color: #696969;
+    letter-spacing: 4px;
+    margin: 0;
   }
   text-decoration: none;
-  margin: 0px 8px;
-  font-size: 20px;
-  color: black;
+  margin: 0px 0px 0px 32px;
+  font-size: 16px;
+  color: #696969;
 }
 
-.NavMenu{
-  background-color: #EEEEEE;
-  border-color: black;
-  border-bottom: 1px solid;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 
 .App-logo {
   height: 40vmin;

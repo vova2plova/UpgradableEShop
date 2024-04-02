@@ -20,8 +20,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextFactory<EShopDbContext>(options =>
 {
-    options.UseInMemoryDatabase("testDb");
-    //options.UseNpgsql(builder.Configuration.GetConnectionString("PgConnection"));
+    //options.UseInMemoryDatabase("testDb");
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PgConnection"));
 });
 
 builder.Services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
