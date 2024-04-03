@@ -1,0 +1,33 @@
+.PhotoSelector{
+    height: 100%;
+    width: 70px;
+    &-Button{
+        display: flex;
+        background-color: red;
+        height: 20px;
+        justify-content: center;
+        align-items: center;
+        &-Up{
+            border-radius: 16px 16px 0px 0px;
+            margin-bottom: 8px;
+        }
+        &-Down{
+            border-radius: 0px 0px 16px 16px;
+            margin-top: 8px;
+        }
+    }
+    &-Images{
+        display: block;
+        &-Image{
+            background-color: Red;
+            margin-bottom: 8px;
+            height: 70px;
+            width: 70px;
+        }
+    }
+    &-DownButton{
+        background-color: #FDFDFD;
+        border-radius: 16px 16px 16px 16px;
+        height: 20px;
+    }
+}

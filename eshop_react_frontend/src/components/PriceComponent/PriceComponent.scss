@@ -1,0 +1,21 @@
+.PriceComponent{
+    border: solid 0.5px;
+    width: 480px;
+    height: 300px;
+
+    &-Category{
+        background-color: cyan;
+    }
+    &-Title{
+        background-color: red;
+    }
+    &-Price{
+        background-color: blue;
+    }
+    &-TypeSelector{
+        background-color: green;
+    }
+    &-Buttons{
+        background-color: yellow;
+    }
+}

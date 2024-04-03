@@ -1,6 +1,9 @@
 ﻿using CatalogService.Application.Items.CreateItem;
+using CatalogService.Application.Items.ToggleVisibilityItem;
+using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace CatalogService.Controllers
 {
@@ -20,10 +23,7 @@ namespace CatalogService.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateItemAsync(CreateItemCommand createItemCommand, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(createItemCommand, cancellationToken);
-            if (response.IsFailed)
-                return BadRequest(string.Join(" ", response.Reasons.Select(r => r.Message)));
-            return Ok();
+            return ConvertFluentResultToIActionResult(await _mediator.Send(createItemCommand, cancellationToken));
         }
 
         /// <summary>
@@ -39,19 +39,17 @@ namespace CatalogService.Controllers
 
 
         /// <summary>
-        /// Обновление товара
+        /// Переключить видимость товара вкл/выкл
         /// </summary>
-        /// <returns></returns>
-        [HttpPut]
-        public async Task<IActionResult> UpdateAuctionAsync()
+        [HttpPut("toggleVisibility")]
+        public async Task<IActionResult> ToggleItemVisibilityAsync([FromQuery]ToggleVisibilityItemCommand command, CancellationToken cancellationToken)
         {
-            return Ok();
+            return ConvertFluentResultToIActionResult(await _mediator.Send(command, cancellationToken));
         }
 
         /// <summary>
         /// Получение списка товаров
         /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetItems()
         {
@@ -67,6 +65,15 @@ namespace CatalogService.Controllers
         [HttpGet("{itemId}")]
         public async Task<IActionResult> GetItemById([FromQuery]int itemId)
         {
+            return Ok();
+        }
+
+
+        private IActionResult ConvertFluentResultToIActionResult(Result result)
+        {
+            if (result.IsFailed)
+                return BadRequest(string.Join(" ", result.Reasons.Select(r => r.Message)));
+
             return Ok();
         }
     }

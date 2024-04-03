@@ -32,7 +32,7 @@ namespace CatalogService.Application.Items.CreateItem
             if (request.Price <= 0)
                 return Result.Fail("Цена не положительная");
 
-            if (request.Brand is null)
+            if (request.BrandId == default)
                 return Result.Fail("Бренд не задан");
 
             return Result.Ok();

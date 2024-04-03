@@ -15,20 +15,30 @@ namespace CatalogService.Domain
         /// <summary>
         /// Идентификатор
         /// </summary>
-        public int Id { get; init; }
+        /// TODO Убрать public set
+        public int Id { get; set; }
 
         /// <summary>
         /// Название
         /// </summary>
-        public string DisplayName { get; init; }
+        public string DisplayName { get; private set; }
 
         /// <summary>
         /// Цена
         /// </summary>
         public decimal Price 
         {
+            get => _price;
+        }
+
+        /// <summary>
+        /// Цена со скидкой
+        /// </summary>
+        public decimal DiscountPrice
+        {
             // Применение скидки
-            get => DiscountPolicy.Apply(_price);
+
+            get => DiscountPolicy?.Apply(_price) ?? _price;
         }
 
         public decimal _price;
@@ -36,51 +46,112 @@ namespace CatalogService.Domain
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public DiscountPolicy DiscountPolicy { get; private set; }
+        public DiscountPolicy? DiscountPolicy { get; private set; }
 
         /// <summary>
         /// Рейтинг
         /// </summary>
-        public decimal Rating => _rating;
-
-        public decimal _rating;
+        public decimal Rating { get; private set; }
         /// <summary>
-        /// <inheritdoc/>
+        /// Идентификатор бренда
         /// </summary>
-        public Brand Brand { get; init; }
-
+        public int BrandId { get; private set; }
         /// <summary>
         /// Список категорий
         /// </summary>
         public IReadOnlyCollection<Category> Categories => _categories;
 
-        public List<Category> _categories = new List<Category>();
+        public List<Category> _categories = [];
 
         /// <summary>
         /// Картинка для карточки товара
         /// </summary>
-        public string Thumbnail { get; init; }
+        public string Thumbnail { get; private set; }
 
         /// <summary>
         /// Список изображений
         /// </summary>
-        public IReadOnlyCollection<string>? Images { get; init; } = new List<string>();
+        public IReadOnlyCollection<string>? Images => _images;
+        private List<string> _images = [];
 
         /// <summary>
         /// Характеристики товара
         /// </summary>
-        public IReadOnlyDictionary<string, string> Characteristic => _characteristic;
+        public IReadOnlyDictionary<string, string>? Characteristics => _characteristics;
 
-        private Dictionary<string, string> _characteristic = new Dictionary<string, string>();
+        private Dictionary<string, string> _characteristics = [];
 
         public FeedbackSystem FeedbackSystem { get; } = new FeedbackSystem();
 
-        public bool IsFavorite { get; init; }
-        public bool IsVisible { get; init; }
+        public bool IsFavorite { get; private set; }
+        public bool IsVisible { get; private set; }
 
-        public void AddCharacteristic(string key, string value)
+        public Item(
+            string displayName, 
+            decimal price,
+            int brandId,
+            List<Category> categories,
+            string thumbnail,
+            bool isVisible,
+            List<string>? images,
+            Dictionary<string,string>? characteristics)
         {
-            _characteristic.Add(key, value);
+            DisplayName = displayName;
+            _price = price;
+            BrandId = brandId;
+            _categories = categories;
+            Thumbnail = thumbnail;
+            _images = images;
+            _characteristics = characteristics;
+            IsVisible = isVisible;
+            IsFavorite = false;
+        }
+
+        
+
+        public void UpdateDisplayName(string newDisplayName)
+        {
+            DisplayName = newDisplayName;
+        }
+
+        public void UpdatePrice(decimal newPrice)
+        {
+            _price = newPrice;
+        }
+
+        public void UpdateBrandId(int newBrandId)
+        {
+            BrandId = newBrandId;
+        }
+
+        public void UpdateCategories(List<Category> newCategories)
+        {
+            _categories = newCategories;
+        }
+
+        public void UpdateThumbnail(string newThumbnail)
+        {
+            Thumbnail = newThumbnail;
+        }
+
+        public void UpdateImages(List<string> newImages)
+        {
+            _images = newImages;
+        }
+
+        public void ToggleVisibility()
+        {
+            IsVisible = !IsVisible;
+        }
+
+        public void UpdateCharacteristics(Dictionary<string,string> newCharacteristics)
+        {
+            _characteristics = newCharacteristics;
+        }
+        
+        public void ToggleIsFavorite()
+        {
+            IsFavorite = !IsFavorite;
         }
 
         public void UpdateDiscountPolicy(DiscountPolicy discountPolicy)
@@ -88,10 +159,16 @@ namespace CatalogService.Domain
             DiscountPolicy = discountPolicy;
         }
 
+        public void AddCharacteristic(string key, string value)
+        {
+            _characteristics.Add(key, value);
+        }
+
         public void AddCategory(Category category)
         {
             _categories.Add(category);
         }
+
     }
 
     /// <summary>

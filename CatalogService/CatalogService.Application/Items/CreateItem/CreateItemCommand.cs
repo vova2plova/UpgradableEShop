@@ -18,15 +18,17 @@ namespace CatalogService.Application.Items.CreateItem
         [JsonPropertyName("price")]
         public decimal Price { get; init; }
         [JsonPropertyName("brand")]
-        public Brand Brand { get; init; }
+        public int BrandId { get; init; }
         [JsonPropertyName("categories")]
         public List<Category> Categories { get; init; }
         [JsonPropertyName("thumbnail")]
         public string Thumbnail { get; init; }
         [JsonPropertyName("images")]
-        public List<string> Images { get; init; }
+        public List<string>? Images { get; init; }
         [JsonPropertyName("characteristics")]
-        public Dictionary<string,string> Characteristics { get; init; }
+        public Dictionary<string,string>? Characteristics { get; init; }
+        [JsonPropertyName("isVisible")]
+        public bool IsVisible { get; init; }
 
     }
 }

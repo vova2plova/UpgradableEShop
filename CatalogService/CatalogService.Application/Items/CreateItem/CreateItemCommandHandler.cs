@@ -1,4 +1,6 @@
-﻿using FluentResults;
+﻿using CatalogService.Application.UOW;
+using CatalogService.Domain;
+using FluentResults;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,19 @@ namespace CatalogService.Application.Items.CreateItem
     /// </summary>
     internal class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, Result>
     {
-        /// <inheritdoc/>
-        public Task<Result> Handle(CreateItemCommand request, CancellationToken cancellationToken)
+        private readonly UnitOfWork _unitOfWork;
+        public CreateItemCommandHandler(UnitOfWork unitOfWork)
         {
-            return Task.FromResult(Result.Ok());
+            _unitOfWork = unitOfWork;
+        }
+        /// <inheritdoc/>
+        public async Task<Result> Handle(CreateItemCommand request, CancellationToken cancellationToken)
+        {
+            var item = new Item(request.DisplayName, request.Price, request.BrandId, request.Categories, request.Thumbnail, request.IsVisible, request.Images, request.Characteristics);
+
+            await _unitOfWork.Items.AddAsync(new[] { item }, cancellationToken);
+
+            return Result.Ok();
         }
     }
 }

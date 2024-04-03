@@ -1,0 +1,30 @@
+@import '../../../base/text.scss';
+
+.CurrentPath{
+    margin-top: 16px;
+    @include ZenKakuGothicAntique-12-regular;
+    margin-bottom: 32px;
+}
+
+.ItemPage{
+    &-Container{
+        display: flex;
+        width: 100%;
+        gap: 30px;
+        &-LeftSide{
+            &-Images{
+                display: flex;
+                gap: 24px;
+            }
+        }
+    }
+}
+
+.Thumbnail{
+    width: 580px;
+    background-color: aqua;
+}
+
+.Price{
+    background-color: blueviolet;
+}
