@@ -1,5 +1,7 @@
 .PhotoSelector{
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 70px;
     &-Button{
         display: flex;
@@ -7,6 +9,7 @@
         height: 20px;
         justify-content: center;
         align-items: center;
+
         &-Up{
             border-radius: 16px 16px 0px 0px;
             margin-bottom: 8px;
@@ -17,10 +20,11 @@
         }
     }
     &-Images{
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
         &-Image{
             background-color: Red;
-            margin-bottom: 8px;
             height: 70px;
             width: 70px;
         }

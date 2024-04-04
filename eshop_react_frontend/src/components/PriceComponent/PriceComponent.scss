@@ -1,9 +1,9 @@
 .PriceComponent{
     border: solid 0.5px;
-    width: 480px;
-    height: 300px;
 
     &-Category{
+        display: flex;
+        justify-content: flex-end;
         background-color: cyan;
     }
     &-Title{

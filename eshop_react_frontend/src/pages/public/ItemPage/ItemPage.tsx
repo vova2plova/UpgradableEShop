@@ -13,8 +13,8 @@ export function ItemPage(){
                 <div className="ItemPage-Container-LeftSide">
                     <div className="ItemPage-Container-LeftSide-Images">
                         <PhotoSelector/>
-                        <div className="Thumbnail">
-
+                        <div className="ThumbnailDiv">
+                            <img className="ThumbnailDiv-Image" src="https://i.imgur.com/xjNouRX.png"/>
                         </div>
                     </div>
                     <div>
@@ -25,7 +25,10 @@ export function ItemPage(){
                     </div>
                 </div>
 
-                <PriceComponent/>
+                <div className="Price">
+                    <PriceComponent/>
+                </div>
+
             </div>
 
         </div>

@@ -9,9 +9,13 @@
 .ItemPage{
     &-Container{
         display: flex;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
         width: 100%;
         gap: 30px;
         &-LeftSide{
+            display: inline-block;
             &-Images{
                 display: flex;
                 gap: 24px;
@@ -20,11 +24,18 @@
     }
 }
 
-.Thumbnail{
-    width: 580px;
+.ThumbnailDiv{
+    display: flex;
     background-color: aqua;
+    width: 100%;
+    &-Image{
+        width: 100%;
+        height: 100%;
+    }
+    
 }
 
 .Price{
     background-color: blueviolet;
+    flex-grow: 1;
 }

@@ -11,16 +11,16 @@ export function PhotoSelector(){
             </div>
             <div className="PhotoSelector-Images">
                 <div className="PhotoSelector-Images-Image">
-
+                    <img src="https://i.imgur.com/h2U1t5o.png" alt="thumbnail"/>
                 </div>
                 <div className="PhotoSelector-Images-Image">
-
+                    <img src="https://i.imgur.com/h2U1t5o.png" alt="thumbnail"/>
                 </div>
                 <div className="PhotoSelector-Images-Image">
-
+                    <img src="https://i.imgur.com/h2U1t5o.png" alt="thumbnail"/>
                 </div>
                 <div className="PhotoSelector-Images-Image">
-
+                    <img src="https://i.imgur.com/h2U1t5o.png" alt="thumbnail"/>
                 </div>
             </div>
             <div className="PhotoSelector-Button PhotoSelector-Button-Down">

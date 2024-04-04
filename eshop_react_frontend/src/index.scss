@@ -2,19 +2,9 @@
 
 body {
   @include ZenKakuGothicAntique-regular;
+  display: flow-root;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #696969;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-#root {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
