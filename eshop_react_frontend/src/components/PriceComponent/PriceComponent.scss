@@ -1,21 +1,48 @@
-.PriceComponent{
-    border: solid 0.5px;
+@import '../../base/text.scss';
+@import '../../base/buttons.scss';
+@import '../../base/colors.scss';
 
-    &-Category{
+.PriceComponent{
+    background-color: #F8F8FA;
+    padding: 30px 40px;
+
+    &-FirstRow{
         display: flex;
-        justify-content: flex-end;
-        background-color: cyan;
+        justify-content: space-between;
+        align-items: center;
+        &-Category{
+            @include ZenKakuGothicAntique-12-regular;
+            color: #5D5D5D;
+        }
     }
     &-Title{
-        background-color: red;
+        @include ZenKakuGothicAntique-40-regular;
+        color: #222222;
     }
     &-Price{
-        background-color: blue;
+        margin-top: 24px;
+        &-Number{
+            @include ZenKakuGothicAntique-24-regular;
+            color: #222222;
+        }
     }
     &-TypeSelector{
-        background-color: green;
+        margin-top: 24px;
     }
     &-Buttons{
-        background-color: yellow;
+        margin-top: 24px;
+        display: flex;
+        justify-content: space-between
     }
+}
+
+.AddToCartButton{
+    @include button-active;
+    padding: 12px 80px;
+}
+
+.IsFavoriteButton{
+    @include button-withPath;
+    border: solid $light-gray 1px;
+    padding: 14px;
 }

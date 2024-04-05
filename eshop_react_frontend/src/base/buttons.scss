@@ -1,0 +1,27 @@
+@import "./colors.scss";
+
+@mixin button-base{
+    all: unset;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+    background-color: transparent;;
+}
+
+@mixin button-active{
+    @include button-base;
+    background-color: $activeColor;
+    color: $white;
+}
+
+@mixin button-withPath{
+    @include button-base;
+}
+

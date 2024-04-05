@@ -14,7 +14,7 @@ export function ItemPage(){
                     <div className="ItemPage-Container-LeftSide-Images">
                         <PhotoSelector/>
                         <div className="ThumbnailDiv">
-                            <img className="ThumbnailDiv-Image" src="https://i.imgur.com/xjNouRX.png"/>
+                            <img className="ThumbnailDiv-Image" src="https://i.imgur.com/xjNouRX.png" alt="qwe"/>
                         </div>
                     </div>
                     <div>

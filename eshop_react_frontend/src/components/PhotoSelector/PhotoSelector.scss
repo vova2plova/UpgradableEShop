@@ -4,8 +4,9 @@
     justify-content: space-between;
     width: 70px;
     &-Button{
+        border: solid 1px;
         display: flex;
-        background-color: red;
+        background-color: #FDFDFD;
         height: 20px;
         justify-content: center;
         align-items: center;

@@ -1,0 +1,23 @@
+@import '../../base/text.scss';
+@import '../../base/buttons.scss';
+
+.IncrementButton{
+    border: solid #C9C9C9  1px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    &-Count{
+        all: unset;
+        @include ZenKakuGothicAntique-16-regular;
+        color: #5D5D5D;
+        width: auto;
+    }
+}
+
+.Button{
+    @include button-base;
+    width: 10px;
+    height: 10px;
+}
+
