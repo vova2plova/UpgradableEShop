@@ -5,6 +5,6 @@ namespace CatalogService.Application.Items.ToggleVisibilityItem
     public record ToggleVisibilityItemCommand : IRequest<Result>
     {
         [JsonPropertyName("itemId")]
-        public int itemId { get; init; }
+        public int ItemId { get; init; }
     }
 }

@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CatalogService.Application.Brands.CreateBrand;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CatalogService.Controllers
 {
     [ApiController]
     [Route("brands")]
-    public class BrandsController : ControllerBase
+    public class BrandsController(
+        IMediator mediator
+        ) : ControllerBase
     {
         [HttpGet]
         public async Task<IActionResult> GetBrandsAsync()
@@ -13,8 +17,9 @@ namespace CatalogService.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddBrandAsync()
+        public async Task<IActionResult> AddBrandAsync(CreateBrandCommand command, CancellationToken cancellationToken)
         {
+            await mediator.Send(command, cancellationToken);
             return Ok();
         }
 

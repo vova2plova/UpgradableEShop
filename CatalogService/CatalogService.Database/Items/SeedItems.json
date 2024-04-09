@@ -1,0 +1,261 @@
+[
+    {
+        "displayName" : "Люстра потолочная светодиодная",
+        "description" : "Люстра потолочная светодиодная «Viento» может крепиться к низкому и натяжному потолкам при помощи планки. Выполнена в виде светящихся треугольников. Для управления используется настенный выключатель. Подходит для эксплуатации в качестве ночника",
+        "price" : 1540,
+        "brand" : "Viento",
+        "categories" : [
+            {
+                "displayName" : "Люстры"
+            },
+            {
+                "displayName" : "Потолочные"
+            },
+            {
+                "displayName" : "Светодиодные"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694369166/lmcode/00L3WyZOpE2sgkxHvCfk-g/87611978_03.png",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694369166/lmcode/00L3WyZOpE2sgkxHvCfk-g/87611978_03.png",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694369166/lmcode/00L3WyZOpE2sgkxHvCfk-g/87611978_03.png",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694369166/lmcode/00L3WyZOpE2sgkxHvCfk-g/87611978_03.png"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Максимальная площадь освещения (в м²)",
+                "value" : "20"
+            },
+            {
+                "key" : "Коллекция для публикации",
+                "value" : "VIENTO"
+            },
+            {
+                "key" : "Тип крепления",
+                "value" : "Планка"
+            },
+            {
+                "key" : "Диаметр потолочной чашки (см)",
+                "value" : "15"
+            },
+            {
+                "key" : "Габариты (ДхШхВ), см",
+                "value" : "37.5×42×7"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра потолочная светодиодная диммируемая",
+        "description" : "Потолочная люстра Malta с пультом управления минималистичный светильник с оригинальным геометрическим орнаментом, который подчеркнет любой интерьер.",
+        "price" : 4036,
+        "brand" : "Ritter Malta",
+        "categories" : [
+            {
+                "displayName" : "Люстры"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694453126/lmcode/UG1d5gfjC0Orv57QbzXgIA/84856779.png",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694453126/lmcode/UG1d5gfjC0Orv57QbzXgIA/84856779.png",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1694453126/lmcode/B0-mPtUAu0KAWFwxoyMw5w/84856779_05.png"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Тип крепления",
+                "value" : "Планка"
+            },
+            {
+                "key" : "Минимальный диаметр отверстия в потолке (в мм)",
+                "value" : "100"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра потолочная светодиодная",
+        "description" : "Люстра потолочная светодиодная Ritter 52071 9 серии Scandia идеально подойдет к любому интерьеру, благодаря строгим четким линиям от белого к серому и черному цвету. Основание из натурального дерева, идеально круглые матовые плафоны, простота и функциональность позволят создать ваш собственный стиль в доме или подчеркнуть эстетику вашего офиса. Комбинируйте, меняйте сочетания цветов, создавайте свои вариации - плафоны можно легко заменить и переставить. Режимы свечения переключаются с помощью обычного настенного выключателя (нейтральный белый свет 4000К/тёплый белый свет 3000К/холодный белый свет 6000К).",
+        "price" : 3690,
+        "brand" : "Ritter Scandia",
+        "categories" : [
+            {
+                "displayName" : "Светодиодные"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1706545405/lmcode/EJZknGa9QEWXGQ1qgUwbOg/89195490.png",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1706545405/lmcode/EJZknGa9QEWXGQ1qgUwbOg/89195490.png"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Тип крепления",
+                "value" : "Планка"
+            },
+            {
+                "key" : "Минимальный диаметр отверстия в потолке (в мм)",
+                "value" : "100"
+            }
+        ]
+    },
+    {
+        "displayName" : "Светильник подвесной деревянный",
+        "description" : "Светильник подвесной Littleton — стильный прибор для современных интерьеров. Подойдет для гостиной, спальни, столовой, кухни, освещает площадь до 25 м². Светильник изготовлен из дерева, крепится к потолку. Возможна регулировка высоты до 150 см. Для работы требуется 6 ламп мощностью до 60 Вт с цоколем E27 (классический). Степень защиты от пыли и влаги — IP20: только для сухих закрытых помещений.",
+        "price" : 18970,
+        "brand" : "Eglo Littleton",
+        "categories" : [
+            {
+                "displayName" : "Светильники"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1703776199/lmcode/IuFLdUOPk0OAz0MU77kXBQ/82269729.png",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1703776199/lmcode/fRCbtArd-k-tzpwwQsxjpg/82269729_03.png",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1703776199/lmcode/IuFLdUOPk0OAz0MU77kXBQ/82269729.png"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Максимальная площадь освещения (в м²)",
+                "value" : "20"
+            },
+            {
+                "key" : "Коллекция для публикации",
+                "value" : "VIENTO"
+            },
+            {
+                "key" : "Тип крепления",
+                "value" : "Планка"
+            },
+            {
+                "key" : "Диаметр потолочной чашки (см)",
+                "value" : "15"
+            },
+            {
+                "key" : "Габариты (ДхШхВ), см",
+                "value" : "37.5×42×7"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра потолочная",
+        "description" : "Светильник «Техно» обеспечивает равномерное освещение пространства площадью до 9 м². Подойдет для небольшой спальни, кухни или прихожей. Может стать источником дополнительного освещения в просторном помещении. Размер изделия — 21 × 39 см.",
+        "price" : 0,
+        "brand" : "Техно",
+        "categories" : [
+            {
+                "displayName" : ""
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1703778639/lmcode/rdqoMSNFJUqLXmKv55TGtg/82827700_01.png",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1703778639/lmcode/rdqoMSNFJUqLXmKv55TGtg/82827700_01.png",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1703778639/lmcode/ofYeJt1MPEKpIKFue9Lmqw/82827700_02.png"
+        ],
+        "characteristics" : [
+            {
+                "key" : "qwe",
+                "value" : "qwe"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра на штанге",
+        "description" : "Кристаллы формируют внешний облик светильников серии Palace. В дополнение к ним каждая модель декорирована инкрустированным цветочным орнаментом филигранной проработки. Широкая серия представляет внушительный выбор потолочных и подвесных люстр, бра с источниками света, скрытыми за кристальными гранями и открытыми, в виде свечей. Идеальный аккомпанемент им составит настольная лампа, выполненная в лучших традициях классического стиля. Предоставляется дополнительный год гарантии.",
+        "price" : 544390,
+        "brand" : "MAYTONI Palace",
+        "categories" : [
+            {
+                "displayName" : "Люстры"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1654026438/lmcode/dluntnZlN0q9KiPN0A0i8w/90345862.jpg",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1654026441/lmcode/3tHg56IzKUCG0Ts814cchA/90345862_02.jpg",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1654026438/lmcode/dluntnZlN0q9KiPN0A0i8w/90345862.jpg"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Максимальная площадь освещения (в м²)",
+                "value" : "17"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра подвесная",
+        "description" : "Производитель: Loft IT, Артикул: 10068_1000 GD, Цоколь: G9, Стиль: Арт-Деко, Страна Испания",
+        "price" : 381480,
+        "brand" : "Loft it",
+        "categories" : [
+            {
+                "displayName" : "Подвесные"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1707265428/lmcode/OIqWasOQC0qn6Qa74ppCyg/91589004.jpg",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1707265428/lmcode/OIqWasOQC0qn6Qa74ppCyg/91589004.jpg",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1707265428/lmcode/wXOGuOeM7E2Yk1l8lFwB2g/91589004_02.jpg"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Максимальная площадь освещения (в м²)",
+                "value" : "4.167"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра подвесная светодиодная",
+        "description" : "В большой и шикарной коллекции Mirage представлено 18 моделей разных форм и цветов. Среди них одно- и двухъярусные, потолочные и горизонтальные люстры в цвете античная бронза. Высококачественный акрил с фактурным орнаментом великолепно преломляет свет и дает красивые отсветы на поверхности. Отличительной особенностью таких плафонов является то, что за счет своей фактуры они прекрасно смотрятся как во включенном, так и в выключенном состоянии.",
+        "price" : 366000,
+        "brand" : "Odeon light",
+        "categories" : [
+            {
+                "displayName" : "Подвесные"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1708973176/lmcode/2rStqK3eu0S0c9pUb6HhXA/91629223.jpg",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1708973176/lmcode/2rStqK3eu0S0c9pUb6HhXA/91629223.jpg",
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1708973176/lmcode/DQ87HYNuDEqo2X00GadLlg/91629223_01.jpg"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Максимальная площадь освещения (в м²)",
+                "value" : "4.167"
+            }
+        ]
+    },
+    {
+        "displayName" : "Люстра потолочная светодиодная",
+        "description" : "Великолепная светодиодная линия Crystal поражает изяществом, лаконичностью и многообразием модельного ряда. Спиралевидные люстры горизонтального и вертикального размещения для помещений с высокими потолками, лестничных пролетов в коттеджах и залов со вторым светом прекрасно украсят интерьер в различных стилях — от неоклассики до хайтека. Множество акриловых шариков, имитирующих хрустальную резную фактуру, создадут непередаваемую игру света и переливов. Модели включают в себя 2 варианта установки — с накладной металлической базой и выносным драйвером. Драйвер устанавливается «за потолком» на расстоянии не более 1,5м от люстры.",
+        "price" : 241540,
+        "brand" : "Odeon light",
+        "categories" : [
+            {
+                "displayName" : "Светодиодные"
+            }
+        ],
+        "thumbnail" : "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1684840356/lmcode/0Sg-zmbuYEaqqC7sUk4POQ/91122016.jpg",
+        "images" : [
+            "https://cdn.leroymerlin.ru/lmru/image/upload/f_auto/q_auto/dpr_1.0/c_pad/w_1000/h_1000/v1684840356/lmcode/0Sg-zmbuYEaqqC7sUk4POQ/91122016.jpg"
+        ],
+        "characteristics" : [
+            {
+                "key" : "Максимальная площадь освещения (в м²)",
+                "value" : "20"
+            },
+            {
+                "key" : "Коллекция для публикации",
+                "value" : "VIENTO"
+            },
+            {
+                "key" : "Тип крепления",
+                "value" : "Планка"
+            },
+            {
+                "key" : "Диаметр потолочной чашки (см)",
+                "value" : "15"
+            },
+            {
+                "key" : "Габариты (ДхШхВ), см",
+                "value" : "37.5×42×7"
+            }
+        ]
+    }
+]

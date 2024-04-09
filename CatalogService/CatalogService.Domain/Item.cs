@@ -22,6 +22,10 @@ namespace CatalogService.Domain
         /// Название
         /// </summary>
         public string DisplayName { get; private set; }
+        /// <summary>
+        /// Описание
+        /// </summary>
+        public string Description { get; private set; }
 
         /// <summary>
         /// Цена

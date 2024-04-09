@@ -15,7 +15,7 @@ namespace CatalogService.Application.Items.ToggleVisibilityItem
             // TODO specification
             var allItem = await _unitOfWork.Items.GetAsync(cancellationToken);
 
-            var existingItem = allItem.FirstOrDefault(i => i.Id == request.itemId);
+            var existingItem = allItem.FirstOrDefault(i => i.Id == request.ItemId);
 
             if (existingItem is null)
                 return Result.Fail("Товара с выбранным идентификтором не существует");

@@ -1,4 +1,5 @@
 using CatalogService.Application.Behaviours;
+using CatalogService.Application.Brands.CreateBrand;
 using CatalogService.Application.Items.CreateItem;
 using CatalogService.Application.Mediator;
 using CatalogService.Application.UOW;
@@ -22,8 +23,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IRepository<Item>, InMemoryItemsRepository>();
+builder.Services.AddSingleton<IRepository<Brand>, BrandRepository>();
 builder.Services.AddSingleton<IRepository<Category>, InMemoryCategoriesRepository>();
-builder.Services.AddSingleton<IRepository<Brand>, InMemoryBrandsRepository>();
+//builder.Services.AddSingleton<IRepository<Brand>, InMemoryBrandsRepository>();
 builder.Services.AddSingleton<UnitOfWork>();
 
 builder.Services.AddMediatR(config =>
@@ -35,7 +37,7 @@ builder.Services.AddMediatR(config =>
 
 builder.Services.AddSingleton<IValidator<CreateItemCommand>, CreateItemCommandValidator>();
 
-var app = builder.Build();
+ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
