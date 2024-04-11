@@ -1,4 +1,7 @@
-﻿namespace CatalogService.Domain
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace CatalogService.Domain
 {
     /// <summary>
     /// Бренд
@@ -8,7 +11,8 @@
         /// <summary>
         /// Идентификатор
         /// </summary>
-        public int Id { get; init; }
+        [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; init; }
         /// <summary>
         /// Название бренда
         /// </summary>

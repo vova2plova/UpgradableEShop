@@ -8,13 +8,11 @@ namespace CatalogService.Application.UOW
     public class UnitOfWork
     {
         public IRepository<Item> Items { get; }
-        public IRepository<Category> Categories { get; }
         public IRepository<Brand> Brands { get; }
 
-        public UnitOfWork(IRepository<Item> items, IRepository<Category> categories, IRepository<Brand> brands)
+        public UnitOfWork(IRepository<Item> items, IRepository<Brand> brands)
         {
             Items = items;
-            Categories = categories;
             Brands = brands;
         }
     }

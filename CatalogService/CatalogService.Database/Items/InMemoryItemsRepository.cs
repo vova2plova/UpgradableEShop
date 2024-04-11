@@ -6,11 +6,11 @@ namespace CatalogService.Database.Items
 {
     public class InMemoryItemsRepository : IRepository<Item>
     {
-        private readonly ConcurrentDictionary<int, Item> _items = [];
+        private readonly ConcurrentDictionary<string, Item> _items = [];
         public Task AddAsync(IEnumerable<Item> objects, CancellationToken cancellationToken)
         {
             // TODO Race condition posible
-            var getLastId = _items
+            /*var getLastId = _items
                     .Keys
                     .OrderByDescending(r => r)
                     .FirstOrDefault() + 1;
@@ -19,7 +19,7 @@ namespace CatalogService.Database.Items
             {
                 item.Id = getLastId;
                 _items.TryAdd(getLastId, item);
-            }
+            }*/
 
             return Task.CompletedTask;
 
@@ -42,7 +42,7 @@ namespace CatalogService.Database.Items
 
         public Task UpdateAsync(IEnumerable<Item> objects, CancellationToken cancellationToken)
         {
-            foreach (var item in objects)
+           foreach (var item in objects)
             {
                 if (!_items.TryGetValue(item.Id, out var existedAuction))
                     continue;

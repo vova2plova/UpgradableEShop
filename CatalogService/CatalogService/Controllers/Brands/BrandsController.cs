@@ -1,19 +1,28 @@
-﻿using CatalogService.Application.Brands.CreateBrand;
+﻿using AutoMapper;
+using CatalogService.Application.Brands.Create;
+using CatalogService.Application.Brands.Get;
+using CatalogService.Controllers.Brands.Dto;
+using CatalogService.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CatalogService.Controllers
+namespace CatalogService.Controllers.Brands
 {
     [ApiController]
     [Route("brands")]
     public class BrandsController(
-        IMediator mediator
+        IMediator mediator,
+        IMapper mapper
         ) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetBrandsAsync()
+        public async Task<IActionResult> GetBrandsAsync([FromQuery] GetBrandsCommand command, CancellationToken cancellationToken)
         {
-            return Ok();
+            var result = await mediator.Send(command, cancellationToken);
+
+            var brandsDtos =  mapper.Map<IEnumerable<BrandDto>>(result.Value);
+
+            return Ok(brandsDtos);
         }
 
         [HttpPost]

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -16,7 +18,8 @@ namespace CatalogService.Domain
         /// Идентификатор
         /// </summary>
         /// TODO Убрать public set
-        public int Id { get; set; }
+        [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; init; }
 
         /// <summary>
         /// Название
@@ -59,13 +62,14 @@ namespace CatalogService.Domain
         /// <summary>
         /// Идентификатор бренда
         /// </summary>
-        public int BrandId { get; private set; }
+
+        public string BrandId { get; private set; }
         /// <summary>
         /// Список категорий
         /// </summary>
-        public IReadOnlyCollection<Category> Categories => _categories;
+        public IReadOnlyCollection<string> Categories => _categories;
 
-        public List<Category> _categories = [];
+        public List<string> _categories = [];
 
         /// <summary>
         /// Картинка для карточки товара
@@ -93,8 +97,8 @@ namespace CatalogService.Domain
         public Item(
             string displayName, 
             decimal price,
-            int brandId,
-            List<Category> categories,
+            string brandId,
+            List<string> categories,
             string thumbnail,
             bool isVisible,
             List<string>? images,
@@ -123,12 +127,12 @@ namespace CatalogService.Domain
             _price = newPrice;
         }
 
-        public void UpdateBrandId(int newBrandId)
+        public void UpdateBrandId(string newBrandId)
         {
             BrandId = newBrandId;
         }
 
-        public void UpdateCategories(List<Category> newCategories)
+        public void UpdateCategories(List<string> newCategories)
         {
             _categories = newCategories;
         }
@@ -168,7 +172,7 @@ namespace CatalogService.Domain
             _characteristics.Add(key, value);
         }
 
-        public void AddCategory(Category category)
+        public void AddCategory(string category)
         {
             _categories.Add(category);
         }

@@ -1,5 +1,4 @@
 ﻿using CatalogService.Application.Items.CreateItem;
-using CatalogService.Application.Items.ToggleVisibilityItem;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -39,15 +38,6 @@ namespace CatalogService.Controllers
 
 
         /// <summary>
-        /// Переключить видимость товара вкл/выкл
-        /// </summary>
-        [HttpPut("toggleVisibility")]
-        public async Task<IActionResult> ToggleItemVisibilityAsync([FromQuery]ToggleVisibilityItemCommand command, CancellationToken cancellationToken)
-        {
-            return ConvertFluentResultToIActionResult(await _mediator.Send(command, cancellationToken));
-        }
-
-        /// <summary>
         /// Получение списка товаров
         /// </summary>
         [HttpGet]
@@ -63,8 +53,9 @@ namespace CatalogService.Controllers
         /// <param name="itemId">Идентификатор товара</param>
         /// <returns></returns>
         [HttpGet("{itemId}")]
-        public async Task<IActionResult> GetItemById([FromQuery]int itemId)
+        public async Task<IActionResult> GetItemById(int itemId)
         {
+            await Console.Out.WriteLineAsync(itemId.ToString());
             return Ok();
         }
 

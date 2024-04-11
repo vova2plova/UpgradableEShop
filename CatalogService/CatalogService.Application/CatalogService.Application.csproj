@@ -16,8 +16,4 @@
     <ProjectReference Include="..\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Categories\" />
-  </ItemGroup>
-
 </Project>

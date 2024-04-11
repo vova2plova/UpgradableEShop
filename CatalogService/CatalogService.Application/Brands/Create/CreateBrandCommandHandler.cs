@@ -1,9 +1,8 @@
 ﻿
 using CatalogService.Application.UOW;
 using CatalogService.Domain;
-using System.Runtime.CompilerServices;
 
-namespace CatalogService.Application.Brands.CreateBrand
+namespace CatalogService.Application.Brands.Create
 {
     public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, Result>
     {

@@ -7,29 +7,20 @@ using System.Text.Json.Serialization;
 
 namespace CatalogService.Database.Brands
 {
-    public record BrandDto
-    {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
-        [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
-        [JsonPropertyName("logo")]
-        public string? Logo { get; set; }
-    }
     public class BrandRepository : IRepository<Brand>
     {
-        MongoClient client;
+        IMongoCollection<Brand> Brands { get; set; }
+
         public BrandRepository() 
         {
             var connString = "mongodb://localhost:27017";
-            client = new MongoClient(connString);
+            var client = new MongoClient(connString);
+            Brands = client.GetDatabase("EshopCatalogDatabase").GetCollection<Brand>("Brands");
         }
 
         public Task AddAsync(IEnumerable<Brand> objects, CancellationToken cancellationToken)
         {
-            var Brands = client.GetDatabase("EshopCatalogDatabase").GetCollection<Brand>("Brands");
-            Brands.InsertManyAsync(objects, null, cancellationToken);
-            return Task.CompletedTask;
+            return Brands.InsertManyAsync(objects, null, cancellationToken);
         }
 
         public Task DeleteAsync(IEnumerable<Brand> objects, CancellationToken cancellationToken)
@@ -37,9 +28,9 @@ namespace CatalogService.Database.Brands
             throw new NotImplementedException();
         }
 
-        public Task<IReadOnlyCollection<Brand>> GetAsync(CancellationToken cancellationToken)
+        public async Task<IReadOnlyCollection<Brand>> GetAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Brands.AsQueryable().ToListAsync();
         }
 
         public Task UpdateAsync(IEnumerable<Brand> objects, CancellationToken cancellationToken)
