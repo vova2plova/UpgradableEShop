@@ -19,7 +19,7 @@ namespace CatalogService.Domain
         /// </summary>
         /// TODO Убрать public set
         [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; init; }
+        public ObjectId Id { get; init; }
 
         /// <summary>
         /// Название
@@ -91,7 +91,6 @@ namespace CatalogService.Domain
 
         public FeedbackSystem FeedbackSystem { get; } = new FeedbackSystem();
 
-        public bool IsFavorite { get; private set; }
         public bool IsVisible { get; private set; }
 
         public Item(
@@ -112,7 +111,6 @@ namespace CatalogService.Domain
             _images = images;
             _characteristics = characteristics;
             IsVisible = isVisible;
-            IsFavorite = false;
         }
 
         
@@ -156,11 +154,6 @@ namespace CatalogService.Domain
         {
             _characteristics = newCharacteristics;
         }
-        
-        public void ToggleIsFavorite()
-        {
-            IsFavorite = !IsFavorite;
-        }
 
         public void UpdateDiscountPolicy(DiscountPolicy discountPolicy)
         {
@@ -177,89 +170,5 @@ namespace CatalogService.Domain
             _categories.Add(category);
         }
 
-    }
-
-    /// <summary>
-    /// Рейтинговая система
-    /// </summary>
-    public class FeedbackSystem
-    {
-        /// <summary>
-        /// Рейтинг товара
-        /// </summary>
-        public decimal Rating => _rating / CountFeedbacks;
-
-        private int _rating;
-
-        /// <summary>
-        /// Кол-во отзывов
-        /// </summary>
-        public int CountFeedbacks => _countFeedbacks;
-
-        private int _countFeedbacks;
-
-        /// <summary>
-        /// Список отзывов
-        /// </summary>
-        public IReadOnlyCollection<Feedback> Feedbacks => _feedbacks;
-
-        private List<Feedback> _feedbacks = new List<Feedback>();
-
-        /// <summary>
-        /// Добавление отзыва
-        /// </summary>
-        /// <param name="userId">Идентификатор пользователя</param>
-        /// <param name="rating">Рейтинг товара</param>
-        /// <param name="advantages">Достоинства</param>
-        /// <param name="disadvantages">Недостатки</param>
-        /// <param name="comment">Комментарий</param>
-        /// <param name="images">Список изображений</param>
-        public void AddFeedback(int userId, int rating, string advantages, string disadvantages, string comment, IReadOnlyCollection<string> images)
-        {
-            _feedbacks.Add(new Feedback
-            {
-                UserId = userId,
-                Rating = rating,
-                Advantages = advantages,
-                Disadvantages = disadvantages,
-                Comment = comment,
-                Images = images
-            });
-
-            _rating += rating;
-            _countFeedbacks++;
-        }
-
-    }
-
-    /// <summary>
-    /// Отзыв
-    /// </summary>
-    public class Feedback
-    {
-        /// <summary>
-        /// Идентификатор пользователя
-        /// </summary>
-        public int UserId { get; init; }
-        /// <summary>
-        /// Оценка товару
-        /// </summary>
-        public int Rating { get; init; }
-        /// <summary>
-        /// Достоинства
-        /// </summary>
-        public string Advantages { get; init; }
-        /// <summary>
-        /// Недостатки
-        /// </summary>
-        public string Disadvantages{ get; init; }
-        /// <summary>
-        /// Комментарий
-        /// </summary>
-        public string Comment { get; init; }
-        /// <summary>
-        /// Прикреплённые изображения
-        /// </summary>
-        public IReadOnlyCollection<string> Images { get; init; }
     }
 }

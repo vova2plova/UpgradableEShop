@@ -30,7 +30,6 @@ builder.Services.AddAutoMapper(config =>
 
 builder.Services.AddSingleton<IRepository<Item>, ItemRepository>();
 builder.Services.AddSingleton<IRepository<Brand>, BrandRepository>();
-//builder.Services.AddSingleton<IRepository<Brand>, InMemoryBrandsRepository>();
 builder.Services.AddSingleton<UnitOfWork>();
 
 builder.Services.AddMediatR(config =>

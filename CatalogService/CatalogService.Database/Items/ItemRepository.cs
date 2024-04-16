@@ -14,12 +14,12 @@ namespace CatalogService.Database.Items
             _items = client.GetDatabase("EshopCatalogDatabase").GetCollection<Item>("Items");
         }
         
-        public Task AddAsync(IEnumerable<Item> objects, CancellationToken cancellationToken)
+        public Task AddAsync(Item objects, CancellationToken cancellationToken)
         {
-            return _items.InsertManyAsync(objects, null, cancellationToken);
+            return _items.InsertOneAsync(objects, null, cancellationToken);
         }
 
-        public Task DeleteAsync(IEnumerable<Item> objects, CancellationToken cancellationToken)
+        public Task DeleteAsync(Item objects, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace CatalogService.Database.Items
             return await _items.AsQueryable().ToListAsync(cancellationToken);
         }
 
-        public Task UpdateAsync(IEnumerable<Item> objects, CancellationToken cancellationToken)
+        public Task UpdateAsync(Item objects, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

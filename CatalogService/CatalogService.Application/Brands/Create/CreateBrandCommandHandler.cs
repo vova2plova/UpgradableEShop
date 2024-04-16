@@ -4,20 +4,15 @@ using CatalogService.Domain;
 
 namespace CatalogService.Application.Brands.Create
 {
-    public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, Result>
+    public class CreateBrandCommandHandler(UnitOfWork unitOfWork) : IRequestHandler<CreateBrandCommand, Result>
     {
-        private readonly UnitOfWork _unitOfWork;
-        public CreateBrandCommandHandler(UnitOfWork unitOfWork) 
-        { 
-            _unitOfWork = unitOfWork;
-        }
         public async Task<Result> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
-            await _unitOfWork.Brands.AddAsync([  new Brand
+            await unitOfWork.Brands.AddAsync(  new Brand
             {
                 DisplayName = request.DisplayName,
                 Logo = request.Logo
-            }], cancellationToken);
+            }, cancellationToken);
             return Result.Ok();
         }
     }
