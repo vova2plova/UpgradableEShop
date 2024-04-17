@@ -1,8 +1,10 @@
-﻿using CatalogService.Application.UOW;
+﻿using CatalogService.Application.Brands.Create;
+using CatalogService.Application.UOW;
 using CatalogService.Domain;
 using FluentResults;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace CatalogService.Database.Brands
@@ -18,22 +20,43 @@ namespace CatalogService.Database.Brands
             Brands = client.GetDatabase("EshopCatalogDatabase").GetCollection<Brand>("Brands");
         }
 
-        public Task AddAsync(Brand objects, CancellationToken cancellationToken)
+        public async Task<Brand> GetById(string id, CancellationToken cancellationToken)
         {
-            return Brands.InsertOneAsync(objects, null, cancellationToken);
+            var filter = new BsonDocument { { "_id", id } };
+            return await (await Brands.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task DeleteAsync(Brand objects, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Brand>> GetListAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Brands.AsQueryable().ToListAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyCollection<Brand>> GetAsync(CancellationToken cancellationToken)
+        public async Task CreateAsync(Brand objects, CancellationToken cancellationToken)
         {
-            return await Brands.AsQueryable().ToListAsync();
+            await Brands.InsertOneAsync(objects, null, cancellationToken);
         }
 
-        public Task UpdateAsync(Brand objects, CancellationToken cancellationToken)
+        public async Task DeleteAsync(string id, CancellationToken cancellationToken)
+        {
+            var filter = new BsonDocument { { "_id", id } };
+            await Brands.DeleteOneAsync(filter, null, cancellationToken);
+        }
+
+        public async Task UpdateAsync(Brand objects, CancellationToken cancellationToken)
+        {
+            var filter = new BsonDocument { { "_id", objects.Id } };
+            var updateSettings = new BsonDocument("$set", new BsonDocument { 
+                {
+                    nameof(objects.DisplayName), objects.DisplayName
+                },
+                {
+                    nameof(objects.Logo), objects.Logo
+                }
+            });
+            await Brands.UpdateOneAsync(filter, updateSettings, null, cancellationToken);
+        }
+
+        public Task SaveAsync(Brand objects, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

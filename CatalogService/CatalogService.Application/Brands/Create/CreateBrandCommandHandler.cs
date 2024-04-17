@@ -8,7 +8,7 @@ namespace CatalogService.Application.Brands.Create
     {
         public async Task<Result> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
-            await unitOfWork.Brands.AddAsync(  new Brand
+            await unitOfWork.Brands.CreateAsync(  new Brand
             {
                 DisplayName = request.DisplayName,
                 Logo = request.Logo

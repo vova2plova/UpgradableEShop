@@ -19,7 +19,17 @@ namespace CatalogService.Database.Items
             return _items.InsertOneAsync(objects, null, cancellationToken);
         }
 
+        public Task CreateAsync(Item objects, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task DeleteAsync(Item objects, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(string id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -27,6 +37,21 @@ namespace CatalogService.Database.Items
         public async Task<IReadOnlyCollection<Item>> GetAsync(CancellationToken cancellationToken)
         {
             return await _items.AsQueryable().ToListAsync(cancellationToken);
+        }
+
+        public Task<Item> GetById(string id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Item>> GetListAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveAsync(Item objects, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public Task UpdateAsync(Item objects, CancellationToken cancellationToken)

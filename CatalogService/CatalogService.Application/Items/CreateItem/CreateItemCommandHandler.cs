@@ -25,7 +25,7 @@ namespace CatalogService.Application.Items.CreateItem
         {
             var item = new Item(request.DisplayName, request.Price, request.BrandId, request.Categories, request.Thumbnail, request.IsVisible, request.Images, request.Characteristics);
 
-            await _unitOfWork.Items.AddAsync(new[] { item }, cancellationToken);
+            await _unitOfWork.Items.CreateAsync(item, cancellationToken);
 
             return Result.Ok();
         }

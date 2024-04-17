@@ -9,7 +9,7 @@ namespace CatalogService.Application.Brands.Get
         public async Task<Result<IEnumerable<Brand>>> Handle(GetBrandsQuery request, CancellationToken cancellationToken)
         {
             //TODO PAGINATION + FILTRES
-            var brands = (await unitOfWork.Brands.GetAsync(cancellationToken)).Take(50);
+            var brands = (await unitOfWork.Brands.GetListAsync(cancellationToken)).Take(50);
             return Result.Ok(brands);
         }
     }
