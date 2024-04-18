@@ -20,10 +20,10 @@ namespace CatalogService.Database.Brands
             Brands = client.GetDatabase("EshopCatalogDatabase").GetCollection<Brand>("Brands");
         }
 
-        public async Task<Brand> GetById(string id, CancellationToken cancellationToken)
+        public async Task<Brand> GetByIdAsync(string id, CancellationToken cancellationToken)
         {
-            var filter = new BsonDocument { { "_id", id } };
-            return await (await Brands.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync(cancellationToken);
+            var filter = new BsonDocument { { "_id", new ObjectId(id) } };
+            return await (await Brands.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Brand>> GetListAsync(CancellationToken cancellationToken)

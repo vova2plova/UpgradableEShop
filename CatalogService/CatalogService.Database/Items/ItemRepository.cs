@@ -39,7 +39,7 @@ namespace CatalogService.Database.Items
             return await _items.AsQueryable().ToListAsync(cancellationToken);
         }
 
-        public Task<Item> GetById(string id, CancellationToken cancellationToken)
+        public Task<Item> GetByIdAsync(string id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

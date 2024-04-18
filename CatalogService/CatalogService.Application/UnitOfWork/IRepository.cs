@@ -6,7 +6,7 @@
     /// <typeparam name="T">Тип объекта, с которым работает репозиторий</typeparam>
     public interface IRepository<T>
     {
-        Task<T> GetById(string id, CancellationToken cancellationToken);
+        Task<T> GetByIdAsync(string id, CancellationToken cancellationToken);
         Task<IEnumerable<T>> GetListAsync(CancellationToken cancellationToken);
 
         Task CreateAsync(T objects, CancellationToken cancellationToken);  

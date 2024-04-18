@@ -5,8 +5,8 @@ namespace CatalogService.Application.Brands.Create
     public record CreateBrandCommand : IRequest<Result>
     {
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
+        public string DisplayName { get; init; }
         [JsonPropertyName("logo")]
-        public string? Logo { get; set; }
+        public string? Logo { get; init; }
     }
 }
