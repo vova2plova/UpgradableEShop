@@ -4,6 +4,7 @@ using CatalogService.Application.Items.CreateItem;
 using CatalogService.Application.Mediator;
 using CatalogService.Application.UOW;
 using CatalogService.Controllers.Brands.Dto;
+using CatalogService.Controllers.Items.Dto;
 using CatalogService.Database.Brands;
 using CatalogService.Database.Items;
 using CatalogService.Domain;
@@ -26,6 +27,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config =>
 {
     config.CreateMap<Brand, BrandDto>();
+    config.CreateMap<Item, ItemDto>();
 });
 
 builder.Services.AddSingleton<IRepository<Item>, ItemRepository>();

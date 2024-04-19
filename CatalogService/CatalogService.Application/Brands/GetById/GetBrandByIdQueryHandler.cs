@@ -10,7 +10,7 @@ namespace CatalogService.Application.Brands.GetById
     {
         public async Task<Result<Brand>> Handle(GetBrandByIdQuery request, CancellationToken cancellationToken)
         {
-            var brand = await unitOfWork.Brands.GetByIdAsync(request.Id.ToString(), cancellationToken);
+            var brand = await unitOfWork.Brands.GetByIdAsync(request.Id, cancellationToken);
             return Result.Ok(brand);
         }
     }

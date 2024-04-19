@@ -95,6 +95,7 @@ namespace CatalogService.Domain
 
         public Item(
             string displayName, 
+            string description,
             decimal price,
             string brandId,
             List<string> categories,
@@ -104,6 +105,7 @@ namespace CatalogService.Domain
             Dictionary<string,string>? characteristics)
         {
             DisplayName = displayName;
+            Description = description;
             _price = price;
             BrandId = brandId;
             _categories = categories;

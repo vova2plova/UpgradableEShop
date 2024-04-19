@@ -1,4 +1,6 @@
-﻿namespace CatalogService.Application.UOW
+﻿using MongoDB.Bson;
+
+namespace CatalogService.Application.UOW
 {
     /// <summary>
     /// Базовая абстракция всех репозиторией
@@ -12,6 +14,6 @@
         Task CreateAsync(T objects, CancellationToken cancellationToken);  
         Task DeleteAsync(string id, CancellationToken cancellationToken);  
         Task UpdateAsync(T objects, CancellationToken cancellationToken);  
-        Task SaveAsync(T objects, CancellationToken cancellationToken);
+        Task SaveAsync(string id, BsonDocument fieldsToUpdate, CancellationToken cancellationToken);
     }
 }

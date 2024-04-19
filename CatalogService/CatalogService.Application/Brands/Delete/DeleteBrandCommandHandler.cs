@@ -7,7 +7,12 @@ namespace CatalogService.Application.Brands.Delete
     {
         public async Task<Result> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
         {
-            await unitOfWork.Brands.DeleteAsync(request.BrandId.ToString(), cancellationToken);
+            var existedBrand = await unitOfWork.Brands.GetByIdAsync(request.Id, cancellationToken);
+
+            if (existedBrand is null)
+                return Result.Ok();
+
+            await unitOfWork.Brands.DeleteAsync(request.Id, cancellationToken);
             return Result.Ok();
         }
     }

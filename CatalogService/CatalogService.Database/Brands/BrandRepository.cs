@@ -23,7 +23,7 @@ namespace CatalogService.Database.Brands
         public async Task<Brand> GetByIdAsync(string id, CancellationToken cancellationToken)
         {
             var filter = new BsonDocument { { "_id", new ObjectId(id) } };
-            return await (await Brands.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync();
+            return await (await Brands.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<Brand>> GetListAsync(CancellationToken cancellationToken)
@@ -56,9 +56,10 @@ namespace CatalogService.Database.Brands
             await Brands.UpdateOneAsync(filter, updateSettings, null, cancellationToken);
         }
 
-        public Task SaveAsync(Brand objects, CancellationToken cancellationToken)
+        public async Task SaveAsync(string id, BsonDocument fieldsToUpdate, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var filter = new BsonDocument { { "_id", id } };
+            await Brands.UpdateOneAsync(filter, fieldsToUpdate, null, cancellationToken);
         }
     }
 }

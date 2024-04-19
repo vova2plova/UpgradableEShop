@@ -15,6 +15,8 @@ namespace CatalogService.Application.Items.CreateItem
     {
         [JsonPropertyName("displayName")]
         public string DisplayName { get; init; }
+        [JsonPropertyName("description")]
+        public string Description { get; init; }
         [JsonPropertyName("price")]
         public decimal Price { get; init; }
         [JsonPropertyName("brandId")]

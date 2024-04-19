@@ -1,9 +1,11 @@
 ﻿using MongoDB.Bson;
+using System.Text.Json.Serialization;
 
 namespace CatalogService.Application.Brands.Delete
 {
     public record DeleteBrandCommand : IRequest<Result>
     {
-        public ObjectId BrandId { get; init; }
+        [JsonPropertyName("id")]
+        public string Id { get; init; }
     }
 }

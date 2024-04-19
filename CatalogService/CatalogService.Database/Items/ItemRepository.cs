@@ -1,55 +1,36 @@
 ﻿using CatalogService.Application.UOW;
 using CatalogService.Domain;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace CatalogService.Database.Items
 {
     public class ItemRepository : IRepository<Item>
     {
-        IMongoCollection<Item> _items;
+        IMongoCollection<Item> Items;
         public ItemRepository() 
         {
             var connString = "mongodb://localhost:27017";
             var client = new MongoClient(connString);
-            _items = client.GetDatabase("EshopCatalogDatabase").GetCollection<Item>("Items");
-        }
-        
-        public Task AddAsync(Item objects, CancellationToken cancellationToken)
-        {
-            return _items.InsertOneAsync(objects, null, cancellationToken);
+            Items = client.GetDatabase("EshopCatalogDatabase").GetCollection<Item>("Items");
         }
 
-        public Task CreateAsync(Item objects, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Item>> GetListAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await Items.AsQueryable().ToListAsync(cancellationToken);
+        }
+        public async Task<Item> GetByIdAsync(string id, CancellationToken cancellationToken)
+        {
+            var filter = new BsonDocument { { "_id", new ObjectId(id) } };
+            return await(await Items.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task DeleteAsync(Item objects, CancellationToken cancellationToken)
+        public async Task CreateAsync(Item objects, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await Items.InsertOneAsync(objects, null, cancellationToken);
         }
 
         public Task DeleteAsync(string id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IReadOnlyCollection<Item>> GetAsync(CancellationToken cancellationToken)
-        {
-            return await _items.AsQueryable().ToListAsync(cancellationToken);
-        }
-
-        public Task<Item> GetByIdAsync(string id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Item>> GetListAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveAsync(Item objects, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -58,5 +39,13 @@ namespace CatalogService.Database.Items
         {
             throw new NotImplementedException();
         }
+
+        public async Task SaveAsync(string id, BsonDocument fieldsToUpdate, CancellationToken cancellationToken)
+        {
+            var filter = new BsonDocument { { "_id", new ObjectId(id) } };
+            await Items.UpdateOneAsync(filter, fieldsToUpdate, null, cancellationToken);
+        }
+
+       
     }
 }

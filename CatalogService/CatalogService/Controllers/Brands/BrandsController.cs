@@ -12,12 +12,11 @@ using MongoDB.Bson;
 
 namespace CatalogService.Controllers.Brands
 {
-    [ApiController]
     [Route("api/v1/brands")]
     public class BrandsController(
         IMediator mediator,
         IMapper mapper
-        ) : ControllerBase
+        ) : BaseController
     {
         // GET:: api/v1/brands
         [HttpGet]
@@ -25,41 +24,47 @@ namespace CatalogService.Controllers.Brands
         {
             var result = await mediator.Send(query, cancellationToken);
 
+            if (result.IsFailed)
+                return BadRequest(string.Join(", ", result.Reasons.Select(r => r.Message)));
+
             var brandsDtos = mapper.Map<IEnumerable<BrandDto>>(result.Value);
 
             return Ok(brandsDtos);
         }
 
-        // GET: api/v1/brands/id
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetBrandsByIdAsync(string id, CancellationToken cancellationToken)
+        // GET: api/v1/brands/brand?id=
+        [HttpGet("brand")]
+        public async Task<IActionResult> GetBrandByIdAsync([FromQuery]GetBrandByIdQuery query, CancellationToken cancellationToken)
         {
-            var result = await mediator.Send(new GetBrandByIdQuery { Id = id }, cancellationToken);
+            var result = await mediator.Send(query, cancellationToken);
+
+            if (result.IsFailed)
+                return BadRequest(string.Join(", ", result.Reasons.Select(r => r.Message)));
 
             var brand = mapper.Map<BrandDto>(result.Value);
 
             return Ok(brand);
         }
 
+        // POST: api/v1/brands
         [HttpPost]
         public async Task<IActionResult> AddBrandAsync(CreateBrandCommand command, CancellationToken cancellationToken)
         {
-            await mediator.Send(command, cancellationToken);
-            return Ok();
+            return ConvertFluentResultToIActionResult(await mediator.Send(command, cancellationToken));
         }
 
+        // PUT: api/v1/brands
         [HttpPut]
         public async Task<IActionResult> UpdateBrandAsync(UpdateBrandCommand command, CancellationToken cancellationToken)
         {
-            await mediator.Send(command, cancellationToken);
-            return Ok();
+            return ConvertFluentResultToIActionResult(await mediator.Send(command, cancellationToken));
         }
 
-        [HttpDelete]
+        // DELETE: api/v1/brands/brand?id=
+        [HttpDelete("brand")]
         public async Task<IActionResult> DeleteBrandAsync([FromQuery]DeleteBrandCommand command, CancellationToken cancellationToken)
         {
-            await mediator.Send(command, cancellationToken);
-            return Ok();
+            return ConvertFluentResultToIActionResult(await mediator.Send(command, cancellationToken));
         }
     }
 }
