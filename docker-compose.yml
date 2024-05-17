@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  eshop-dev:
+    driver: bridge
+services:
+  catalog-service:
+    container_name: catalog_service_container
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8001"
+      ASPNETCORE_ENVIRONMENT: Development
+    build:
+      context: ./CatalogService
+      dockerfile: Dockerfile
+    ports:
+    - "8000:80"
+    - "8001:443"
+    networks:
+      - eshop-dev
+    depends_on:
+      - mongo-db
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/ 
+  mongo-db:
+    container_name: mongo_db
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: eshop_user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - eshop-dev
+    volumes:
+      - mongo-data:/var/lib/mongo/data
+volumes:
+  mongo-data: 

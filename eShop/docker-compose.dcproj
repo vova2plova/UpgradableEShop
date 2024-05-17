@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>e96cf4a3-c1a5-45da-be66-281a3a449432</ProjectGuid>
+    <ProjectGuid>fc3797ba-e819-4e0c-b7fb-30f5139f0f93</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>eshop</DockerServiceName>
