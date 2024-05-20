@@ -3,7 +3,21 @@ version: '3.4'
 networks:
   eshop-dev:
     driver: bridge
+
+volumes:
+  mongo-data: 
+
 services:
+#Front
+  frontend-app:
+    container_name: frontend_react
+    build:
+      context: ./eshop_react_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+#Catalog-service
   catalog-service:
     container_name: catalog_service
     build:
@@ -23,6 +37,8 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ./CatalogService/certs:/https
+
+#Mongo
   mongo-db:
     container_name: mongo_db
     image: mongo
@@ -33,5 +49,14 @@ services:
       - eshop-dev
     volumes:
       - mongo-data:/var/lib/mongo/data
-volumes:
-  mongo-data: 
+
+#Nginx
+  nginx:
+    volumes:
+      - ./nginx.conf:/etc/nginx.conf
+    container_name: nginx
+    image: 
+    ports:
+      - "80"
+      - "443"
+
