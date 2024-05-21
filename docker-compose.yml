@@ -52,11 +52,14 @@ services:
 
 #Nginx
   nginx:
-    volumes:
-      - ./nginx.conf:/etc/nginx.conf
     container_name: nginx
-    image: 
+    image: nginx:mainline
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./CatalogService/certs:/etc/nginx/certs/
     ports:
-      - "80"
-      - "443"
-
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend-app
+      - catalog-service
