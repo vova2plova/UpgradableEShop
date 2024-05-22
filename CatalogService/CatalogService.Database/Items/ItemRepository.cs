@@ -10,7 +10,7 @@ namespace CatalogService.Database.Items
         IMongoCollection<Item> Items;
         public ItemRepository() 
         {
-            var connString = "mongodb://localhost:27017";
+            var connString = "mongodb://eshop_user:password@mongo:27017";
             var client = new MongoClient(connString);
             Items = client.GetDatabase("EshopCatalogDatabase").GetCollection<Item>("Items");
         }

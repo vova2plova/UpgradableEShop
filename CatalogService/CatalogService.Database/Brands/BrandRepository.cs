@@ -15,7 +15,7 @@ namespace CatalogService.Database.Brands
 
         public BrandRepository() 
         {
-            var connString = "mongodb://localhost:27017";
+            var connString = "mongodb://eshop_user:password@mongo:27017";
             var client = new MongoClient(connString);
             Brands = client.GetDatabase("EshopCatalogDatabase").GetCollection<Brand>("Brands");
         }
