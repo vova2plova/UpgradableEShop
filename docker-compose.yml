@@ -1,59 +1,81 @@
-version: '3.4'
-
 networks:
   eshop-dev:
     driver: bridge
-
 volumes:
   mongo-data: 
+  rabbit-data:
 
 services:
-#Front
+#catalog-service
+  catalog-service:
+    container_name: catalog_service
+    networks:
+      - eshop-dev
+    build:
+      context: ./CatalogService
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=../https/catalog_service.pfx
+    ports:
+      - "6000:5000"
+      - "6001:5001"
+    volumes:
+      - ./CatalogService/certs/:/https
+
+#front
   frontend-app:
     container_name: frontend_react
+    networks:
+      - eshop-dev
     build:
       context: ./eshop_react_frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
 
-#Catalog-service
-  catalog-service:
-    container_name: catalog_service
-    build:
-      context: ./CatalogService
-      dockerfile: Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=../https/catalog_service.pfx
-    ports:
-      - "5000:8080"
-      - "5001:8081"
+#mongo
+  mongo-db:
+    container_name: mongo
+    image: mongo
+    restart: always
     networks:
       - eshop-dev
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ./CatalogService/certs:/https
-
-#Mongo
-  mongo-db:
-    container_name: mongo_db
-    image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: eshop_user
       MONGO_INITDB_ROOT_PASSWORD: password
-    networks:
-      - eshop-dev
     volumes:
       - mongo-data:/var/lib/mongo/data
+    ports:
+      - "27017:27017"
 
-#Nginx
+  mongo-express:
+    container_name: mongo_express
+    image: mongo-express
+    restart: always
+    networks:
+      - eshop-dev
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: eshop_user
+      ME_CONFIG_BASICAUTH_PASSWORD: password
+      ME_CONFIG_MONGODB_ADMINUSERNAME: eshop_user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_URL: mongodb://eshop_user:password@mongo:27017/
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo-db
+
+#nginx
   nginx:
     container_name: nginx
     image: nginx:mainline
+    networks:
+      - eshop-dev
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./CatalogService/certs:/etc/nginx/certs/
@@ -63,3 +85,21 @@ services:
     depends_on:
       - frontend-app
       - catalog-service
+
+#rabbitMq
+  rabbitMq:
+    container_name: rabbitmq
+    image: rabbitmq:3.13.2-management
+    networks:
+      - eshop-dev
+    hostname: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmuser
+      - RABBITMQ_DEFAULT_PASS=rmpassword
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
