@@ -36,7 +36,6 @@ namespace CatalogService.Controllers.Items
             return Ok(itemsDtos);
         }
 
-
         // GET: api/v1/items/item?id=
         [HttpGet("item")]
         public async Task<IActionResult> GetItemById(string itemId)
