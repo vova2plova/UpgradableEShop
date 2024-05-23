@@ -11,7 +11,7 @@ namespace CatalogService.Database.Brands
 {
     public class BrandRepository : IRepository<Brand>
     {
-        IMongoCollection<Brand> Brands { get; set; }
+        readonly IMongoCollection<Brand> Brands;
 
         public BrandRepository() 
         {
@@ -31,9 +31,9 @@ namespace CatalogService.Database.Brands
             return await Brands.AsQueryable().ToListAsync(cancellationToken);
         }
 
-        public async Task CreateAsync(Brand objects, CancellationToken cancellationToken)
+        public async Task CreateAsync(Brand brand, CancellationToken cancellationToken)
         {
-            await Brands.InsertOneAsync(objects, null, cancellationToken);
+            await Brands.InsertOneAsync(brand, null, cancellationToken);
         }
 
         public async Task DeleteAsync(string id, CancellationToken cancellationToken)
@@ -42,24 +42,18 @@ namespace CatalogService.Database.Brands
             await Brands.DeleteOneAsync(filter, null, cancellationToken);
         }
 
-        public async Task UpdateAsync(Brand objects, CancellationToken cancellationToken)
+        public async Task SaveAsync(Brand brand, CancellationToken cancellationToken)
         {
-            var filter = new BsonDocument { { "_id", objects.Id } };
-            var updateSettings = new BsonDocument("$set", new BsonDocument { 
+            var filter = new BsonDocument { { "_id", brand.Id } };
+            var updateSettings = new BsonDocument("$set", new BsonDocument {
                 {
-                    nameof(objects.DisplayName), objects.DisplayName
+                    nameof(brand.DisplayName), brand.DisplayName
                 },
                 {
-                    nameof(objects.Logo), objects.Logo
+                    nameof(brand.Logo), brand.Logo
                 }
             });
             await Brands.UpdateOneAsync(filter, updateSettings, null, cancellationToken);
-        }
-
-        public async Task SaveAsync(string id, BsonDocument fieldsToUpdate, CancellationToken cancellationToken)
-        {
-            var filter = new BsonDocument { { "_id", id } };
-            await Brands.UpdateOneAsync(filter, fieldsToUpdate, null, cancellationToken);
         }
     }
 }

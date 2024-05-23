@@ -55,7 +55,7 @@ namespace CatalogService.Controllers.Brands
 
         // PUT: api/v1/brands
         [HttpPut]
-        public async Task<IActionResult> UpdateBrandAsync(UpdateBrandCommand command, CancellationToken cancellationToken)
+        public async Task<IActionResult> SaveBrandAsync(SaveBrandCommand command, CancellationToken cancellationToken)
         {
             return ConvertFluentResultToIActionResult(await mediator.Send(command, cancellationToken));
         }

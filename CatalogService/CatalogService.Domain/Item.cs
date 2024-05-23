@@ -18,7 +18,8 @@ namespace CatalogService.Domain
         /// Идентификатор
         /// </summary>
         /// TODO Убрать public set
-        [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; init; }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace CatalogService.Domain
             _price = newPrice;
         }
 
-        public void UpdateBrandId(string newBrandId)
+        public void SaveBrandId(string newBrandId)
         {
             BrandId = newBrandId;
         }

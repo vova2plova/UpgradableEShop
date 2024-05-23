@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace CatalogService.Application.Brands.Update
 {
-    public record UpdateBrandCommand : IRequest<Result>
+    public record SaveBrandCommand : IRequest<Result>
     {
         [JsonPropertyName("id")]
         public string Id { get; init; }

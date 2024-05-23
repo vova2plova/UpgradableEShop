@@ -11,9 +11,8 @@ namespace CatalogService.Application.UOW
         Task<T> GetByIdAsync(string id, CancellationToken cancellationToken);
         Task<IEnumerable<T>> GetListAsync(CancellationToken cancellationToken);
 
-        Task CreateAsync(T objects, CancellationToken cancellationToken);  
+        Task CreateAsync(T src, CancellationToken cancellationToken);  
         Task DeleteAsync(string id, CancellationToken cancellationToken);  
-        Task UpdateAsync(T objects, CancellationToken cancellationToken);  
-        Task SaveAsync(string id, BsonDocument fieldsToUpdate, CancellationToken cancellationToken);
+        Task SaveAsync(T src, CancellationToken cancellationToken);
     }
 }

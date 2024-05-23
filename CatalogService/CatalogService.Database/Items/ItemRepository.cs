@@ -7,7 +7,7 @@ namespace CatalogService.Database.Items
 {
     public class ItemRepository : IRepository<Item>
     {
-        IMongoCollection<Item> Items;
+        readonly IMongoCollection<Item> Items;
         public ItemRepository() 
         {
             var connString = "mongodb://eshop_user:password@mongo:27017";
@@ -25,9 +25,9 @@ namespace CatalogService.Database.Items
             return await(await Items.FindAsync(filter, null, cancellationToken)).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task CreateAsync(Item objects, CancellationToken cancellationToken)
+        public async Task CreateAsync(Item item, CancellationToken cancellationToken)
         {
-            await Items.InsertOneAsync(objects, null, cancellationToken);
+            await Items.InsertOneAsync(item, null, cancellationToken);
         }
 
         public Task DeleteAsync(string id, CancellationToken cancellationToken)
@@ -35,15 +35,10 @@ namespace CatalogService.Database.Items
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Item objects, CancellationToken cancellationToken)
+        public async Task SaveAsync(Item item, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task SaveAsync(string id, BsonDocument fieldsToUpdate, CancellationToken cancellationToken)
-        {
-            var filter = new BsonDocument { { "_id", new ObjectId(id) } };
-            await Items.UpdateOneAsync(filter, fieldsToUpdate, null, cancellationToken);
+            var filter = new BsonDocument { { "_id", new ObjectId(item.Id.ToString()) } };
+            await Items.UpdateOneAsync(filter, null, null,cancellationToken);
         }
 
        

@@ -11,7 +11,8 @@ namespace CatalogService.Domain
         /// <summary>
         /// Идентификатор
         /// </summary>
-        [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; init; }
         /// <summary>
         /// Название бренда

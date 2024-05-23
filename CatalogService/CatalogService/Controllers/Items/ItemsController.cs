@@ -64,7 +64,5 @@ namespace CatalogService.Controllers.Items
         {
             return Ok();
         }
-
-       
     }
 }
