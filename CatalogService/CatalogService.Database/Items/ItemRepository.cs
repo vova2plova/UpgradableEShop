@@ -10,7 +10,10 @@ namespace CatalogService.Database.Items
         readonly IMongoCollection<Item> Items;
         public ItemRepository() 
         {
-            var connString = "mongodb://eshop_user:password@mongo:27017";
+            // Test Database
+            var connString = "mongodb://localhost:27017";
+            // Main Database
+            // var connString = "mongodb://eshop_user:password@mongo:27017";
             var client = new MongoClient(connString);
             Items = client.GetDatabase("EshopCatalogDatabase").GetCollection<Item>("Items");
         }
@@ -27,12 +30,13 @@ namespace CatalogService.Database.Items
 
         public async Task CreateAsync(Item item, CancellationToken cancellationToken)
         {
-            await Items.InsertOneAsync(item, null, cancellationToken);
+            await Items.InsertOneAsync(item, null,  cancellationToken);
         }
 
-        public Task DeleteAsync(string id, CancellationToken cancellationToken)
+        public async Task DeleteAsync(string id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var filter = new BsonDocument { { "_id", new ObjectId(id) } };
+            await Items.DeleteOneAsync(filter, cancellationToken);
         }
 
         public async Task SaveAsync(Item item, CancellationToken cancellationToken)

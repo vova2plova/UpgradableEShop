@@ -15,7 +15,11 @@ namespace CatalogService.Database.Brands
 
         public BrandRepository() 
         {
-            var connString = "mongodb://eshop_user:password@mongo:27017";
+
+            // Test Database
+            var connString = "mongodb://localhost:27017";
+            // Main Database
+            // var connString = "mongodb://eshop_user:password@mongo:27017";
             var client = new MongoClient(connString);
             Brands = client.GetDatabase("EshopCatalogDatabase").GetCollection<Brand>("Brands");
         }
@@ -38,7 +42,7 @@ namespace CatalogService.Database.Brands
 
         public async Task DeleteAsync(string id, CancellationToken cancellationToken)
         {
-            var filter = new BsonDocument { { "_id", id } };
+            var filter = new BsonDocument { { "_id", new ObjectId(id) } };
             await Brands.DeleteOneAsync(filter, null, cancellationToken);
         }
 
