@@ -20,7 +20,7 @@ namespace CatalogService.Database.Items
 
         public async Task<IEnumerable<Item>> GetListAsync(CancellationToken cancellationToken)
         {
-            return await Items.AsQueryable().ToListAsync(cancellationToken);
+            return await Items.Find("{}").ToListAsync(cancellationToken);
         }
         public async Task<Item> GetByIdAsync(string id, CancellationToken cancellationToken)
         {

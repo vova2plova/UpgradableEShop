@@ -9,26 +9,13 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Domain
 {
-    /// <summary>
-    /// Товар
-    /// </summary>
     public class Item
     {
-        /// <summary>
-        /// Идентификатор
-        /// </summary>
-        /// TODO Убрать public set
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; init; }
 
-        /// <summary>
-        /// Название
-        /// </summary>
         public string DisplayName { get; private set; }
-        /// <summary>
-        /// Описание
-        /// </summary>
         public string Description { get; private set; }
 
         /// <summary>
@@ -37,6 +24,7 @@ namespace CatalogService.Domain
         public decimal Price 
         {
             get => _price;
+            set => _price = value;
         }
 
         /// <summary>
@@ -49,46 +37,20 @@ namespace CatalogService.Domain
             get => DiscountPolicy?.Apply(_price) ?? _price;
         }
 
-        public decimal _price;
+        private decimal _price;
 
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
         public DiscountPolicy? DiscountPolicy { get; private set; }
 
-        /// <summary>
-        /// Рейтинг
-        /// </summary>
         public decimal Rating { get; private set; }
-        /// <summary>
-        /// Идентификатор бренда
-        /// </summary>
 
         public string BrandId { get; private set; }
-        /// <summary>
-        /// Список категорий
-        /// </summary>
-        public IReadOnlyCollection<string> Categories => _categories;
+        public IReadOnlyCollection<string> Categories { get; set; }
 
-        public List<string> _categories = [];
-
-        /// <summary>
-        /// Картинка для карточки товара
-        /// </summary>
         public string Thumbnail { get; private set; }
 
-        /// <summary>
-        /// Список изображений
-        /// </summary>
-        public IReadOnlyCollection<string>? Images => _images;
-        private List<string> _images = [];
+        public IReadOnlyCollection<string>? Images { get; set; }
 
-        /// <summary>
-        /// Характеристики товара
-        /// </summary>
-        public IReadOnlyDictionary<string, string>? Characteristics => _characteristics;
-
-        private Dictionary<string, string> _characteristics = [];
+        public IReadOnlyDictionary<string, string>? Characteristics { get; set; }
 
         public FeedbackSystem FeedbackSystem { get; } = new FeedbackSystem();
 
@@ -107,71 +69,19 @@ namespace CatalogService.Domain
         {
             DisplayName = displayName;
             Description = description;
-            _price = price;
+            Price = price;
             BrandId = brandId;
-            _categories = categories;
+            Categories = categories;
             Thumbnail = thumbnail;
-            _images = images;
-            _characteristics = characteristics;
+            Images = images;
+            Characteristics = characteristics;
             IsVisible = isVisible;
         }
 
-        
-
-        public void UpdateDisplayName(string newDisplayName)
-        {
-            DisplayName = newDisplayName;
-        }
-
-        public void UpdatePrice(decimal newPrice)
-        {
-            _price = newPrice;
-        }
-
-        public void SaveBrandId(string newBrandId)
-        {
-            BrandId = newBrandId;
-        }
-
-        public void UpdateCategories(List<string> newCategories)
-        {
-            _categories = newCategories;
-        }
-
-        public void UpdateThumbnail(string newThumbnail)
-        {
-            Thumbnail = newThumbnail;
-        }
-
-        public void UpdateImages(List<string> newImages)
-        {
-            _images = newImages;
-        }
 
         public void ToggleVisibility()
         {
             IsVisible = !IsVisible;
         }
-
-        public void UpdateCharacteristics(Dictionary<string,string> newCharacteristics)
-        {
-            _characteristics = newCharacteristics;
-        }
-
-        public void UpdateDiscountPolicy(DiscountPolicy discountPolicy)
-        {
-            DiscountPolicy = discountPolicy;
-        }
-
-        public void AddCharacteristic(string key, string value)
-        {
-            _characteristics.Add(key, value);
-        }
-
-        public void AddCategory(string category)
-        {
-            _categories.Add(category);
-        }
-
     }
 }
