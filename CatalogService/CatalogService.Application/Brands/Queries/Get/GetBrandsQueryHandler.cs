@@ -2,7 +2,7 @@
 using CatalogService.Application.UOW;
 using CatalogService.Domain;
 
-namespace CatalogService.Application.Brands.Get
+namespace CatalogService.Application.Brands.Queries.Get
 {
     public class GetBrandsQueryHandler(UnitOfWork unitOfWork) : IRequestHandler<GetBrandsQuery, Result<IEnumerable<Brand>>>
     {

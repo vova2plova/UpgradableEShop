@@ -1,8 +1,7 @@
-﻿
-using CatalogService.Application.UOW;
+﻿using CatalogService.Application.UOW;
 using CatalogService.Domain;
 
-namespace CatalogService.Application.Brands.Create
+namespace CatalogService.Application.Brands.Commands.Create
 {
     public class CreateBrandCommandHandler(UnitOfWork unitOfWork) : IRequestHandler<CreateBrandCommand, Result>
     {

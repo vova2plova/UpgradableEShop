@@ -1,7 +1,7 @@
 ﻿using CatalogService.Domain;
 using System.Text.Json.Serialization;
 
-namespace CatalogService.Application.Brands.Get
+namespace CatalogService.Application.Brands.Queries.Get
 {
     public record GetBrandsQuery : IRequest<Result<IEnumerable<Brand>>>
     {

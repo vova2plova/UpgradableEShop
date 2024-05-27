@@ -1,7 +1,4 @@
-﻿using CatalogService.Application.Items.CreateItem;
-using CatalogService.Application.Mediator;
-using FluentResults;
-using MediatR;
+﻿using CatalogService.Application.Validator;
 
 namespace CatalogService.Application.Behaviours
 {

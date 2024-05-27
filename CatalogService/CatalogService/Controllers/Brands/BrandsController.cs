@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using CatalogService.Application.Brands.Create;
-using CatalogService.Application.Brands.Delete;
-using CatalogService.Application.Brands.Get;
-using CatalogService.Application.Brands.GetById;
-using CatalogService.Application.Brands.Update;
+using CatalogService.Application.Brands.Commands.Create;
+using CatalogService.Application.Brands.Commands.Delete;
+using CatalogService.Application.Brands.Commands.Update;
+using CatalogService.Application.Brands.Queries.Get;
+using CatalogService.Application.Brands.Queries.GetById;
 using CatalogService.Controllers.Brands.Dto;
 using CatalogService.Domain;
 using MediatR;
@@ -55,7 +55,7 @@ namespace CatalogService.Controllers.Brands
 
         // PUT: api/v1/brands
         [HttpPut]
-        public async Task<IActionResult> SaveBrandAsync(SaveBrandCommand command, CancellationToken cancellationToken)
+        public async Task<IActionResult> SaveBrandAsync(UpdateBrandCommand command, CancellationToken cancellationToken)
         {
             return ConvertFluentResultToIActionResult(await mediator.Send(command, cancellationToken));
         }

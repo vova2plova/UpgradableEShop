@@ -42,7 +42,12 @@ namespace CatalogService.Database.Items
         public async Task SaveAsync(Item item, CancellationToken cancellationToken)
         {
             var filter = new BsonDocument { { "_id", new ObjectId(item.Id.ToString()) } };
-            await Items.UpdateOneAsync(filter, null, null,cancellationToken);
+
+            var BsonDocument = item.ToBsonDocument();
+
+            var updateSettings = new BsonDocument("$set", BsonDocument);
+
+            await Items.UpdateOneAsync(filter, updateSettings, null, cancellationToken);
         }
 
        

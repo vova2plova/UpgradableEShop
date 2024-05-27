@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace CatalogService.Application.Items.CreateItem
+namespace CatalogService.Application.Items.Commands.Create
 {
     public record CreateItemCommand : IRequest<Result>
     {

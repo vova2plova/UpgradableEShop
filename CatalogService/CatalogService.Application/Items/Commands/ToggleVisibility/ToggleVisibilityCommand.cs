@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CatalogService.Application.Items.ToggleVisibility
+namespace CatalogService.Application.Items.Commands.ToggleVisibility
 {
     public record ToggleVisibilityCommand : IRequest<Result>
     {

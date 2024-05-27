@@ -1,8 +1,8 @@
 ﻿using CatalogService.Application.UOW;
 using CatalogService.Domain;
 
-namespace CatalogService.Application.Items.Get
-{
+namespace CatalogService.Application.Items.Queries.Get 
+{ 
     public class GetItemsQueryHandler(
         UnitOfWork unitOfWork
         ) : IRequestHandler<GetItemsQuery, Result<IEnumerable<Item>>>

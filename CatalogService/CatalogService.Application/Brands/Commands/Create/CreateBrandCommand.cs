@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CatalogService.Application.Brands.Create
+namespace CatalogService.Application.Brands.Commands.Create
 {
     public record CreateBrandCommand : IRequest<Result>
     {

@@ -2,13 +2,13 @@
 using CatalogService.Domain;
 using MongoDB.Bson;
 
-namespace CatalogService.Application.Brands.Update
+namespace CatalogService.Application.Brands.Commands.Update
 {
-    public class SaveBrandCommandHandler(
+    public class UpdateBrandCommandHandler(
         UnitOfWork unitOfWork
-        ) : IRequestHandler<SaveBrandCommand, Result>
+        ) : IRequestHandler<UpdateBrandCommand, Result>
     {
-        public async Task<Result> Handle(SaveBrandCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
             await unitOfWork.Brands.SaveAsync(new Brand
             {

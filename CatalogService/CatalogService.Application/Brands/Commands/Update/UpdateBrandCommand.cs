@@ -1,9 +1,8 @@
-﻿using CatalogService.Domain;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace CatalogService.Application.Brands.Update
+namespace CatalogService.Application.Brands.Commands.Update
 {
-    public record SaveBrandCommand : IRequest<Result>
+    public record UpdateBrandCommand : IRequest<Result>
     {
         [JsonPropertyName("id")]
         public string Id { get; init; }

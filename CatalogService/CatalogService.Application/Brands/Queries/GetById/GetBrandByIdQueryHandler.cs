@@ -2,7 +2,7 @@
 using CatalogService.Application.UOW;
 using CatalogService.Domain;
 
-namespace CatalogService.Application.Brands.GetById
+namespace CatalogService.Application.Brands.Queries.GetById
 {
     public class GetBrandByIdQueryHandler(
         UnitOfWork unitOfWork

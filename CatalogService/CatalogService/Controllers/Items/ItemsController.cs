@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CatalogService.Application.Items.CreateItem;
-using CatalogService.Application.Items.Get;
-using CatalogService.Application.Items.ToggleVisibility;
+using CatalogService.Application.Items.Commands.Create;
+using CatalogService.Application.Items.Commands.ToggleVisibility;
+using CatalogService.Application.Items.Queries.Get;
 using CatalogService.Controllers.Brands.Dto;
 using CatalogService.Controllers.Items.Dto;
 using FluentResults;

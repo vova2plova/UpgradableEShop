@@ -1,6 +1,5 @@
 using CatalogService.Application.Behaviours;
-using CatalogService.Application.Brands.Create;
-using CatalogService.Application.Items.CreateItem;
+using CatalogService.Application.Items.Commands.Create;
 using CatalogService.Application.Mediator;
 using CatalogService.Application.UOW;
 using CatalogService.Controllers.Brands.Dto;

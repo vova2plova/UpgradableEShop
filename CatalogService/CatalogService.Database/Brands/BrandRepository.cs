@@ -1,8 +1,8 @@
-﻿using CatalogService.Application.Brands.Create;
-using CatalogService.Application.UOW;
+﻿using CatalogService.Application.UOW;
 using CatalogService.Domain;
 using FluentResults;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
@@ -49,14 +49,11 @@ namespace CatalogService.Database.Brands
         public async Task SaveAsync(Brand brand, CancellationToken cancellationToken)
         {
             var filter = new BsonDocument { { "_id", brand.Id } };
-            var updateSettings = new BsonDocument("$set", new BsonDocument {
-                {
-                    nameof(brand.DisplayName), brand.DisplayName
-                },
-                {
-                    nameof(brand.Logo), brand.Logo
-                }
-            });
+
+            var BsonDocument = brand.ToBsonDocument();
+
+            var updateSettings = new BsonDocument("$set", BsonDocument);
+
             await Brands.UpdateOneAsync(filter, updateSettings, null, cancellationToken);
         }
     }

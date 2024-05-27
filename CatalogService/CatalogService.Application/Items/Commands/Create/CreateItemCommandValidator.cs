@@ -1,7 +1,7 @@
-﻿using CatalogService.Application.Mediator;
+﻿using CatalogService.Application.Validator;
 using FluentResults;
 
-namespace CatalogService.Application.Items.CreateItem
+namespace CatalogService.Application.Items.Commands.Create
 {
     /// <summary>
     /// Валидатор команды создания товара

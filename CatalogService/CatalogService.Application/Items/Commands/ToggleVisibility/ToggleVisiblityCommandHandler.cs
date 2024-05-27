@@ -1,8 +1,6 @@
-﻿
-using CatalogService.Application.UOW;
-using MongoDB.Bson;
+﻿using CatalogService.Application.UOW;
 
-namespace CatalogService.Application.Items.ToggleVisibility
+namespace CatalogService.Application.Items.Commands.ToggleVisibility
 {
     public class ToggleVisiblityCommandHandler(
         UnitOfWork unitOfWork

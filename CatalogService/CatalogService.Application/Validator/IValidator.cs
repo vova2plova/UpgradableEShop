@@ -1,12 +1,4 @@
-﻿using FluentResults;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CatalogService.Application.Mediator
+﻿namespace CatalogService.Application.Validator
 {
     /// <summary>
     /// Интерфейс для объявления валидации для использования в <see cref="ValidationBehaviour"/>

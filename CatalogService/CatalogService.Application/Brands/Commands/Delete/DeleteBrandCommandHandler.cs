@@ -1,7 +1,6 @@
-﻿
-using CatalogService.Application.UOW;
+﻿using CatalogService.Application.UOW;
 
-namespace CatalogService.Application.Brands.Delete
+namespace CatalogService.Application.Brands.Commands.Delete
 {
     public class DeleteBrandCommandHandler(UnitOfWork unitOfWork) : IRequestHandler<DeleteBrandCommand, Result>
     {

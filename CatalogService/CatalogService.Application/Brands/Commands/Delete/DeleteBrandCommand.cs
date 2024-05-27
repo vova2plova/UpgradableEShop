@@ -1,7 +1,6 @@
-﻿using MongoDB.Bson;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace CatalogService.Application.Brands.Delete
+namespace CatalogService.Application.Brands.Commands.Delete
 {
     public record DeleteBrandCommand : IRequest<Result>
     {

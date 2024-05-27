@@ -1,6 +1,6 @@
 ﻿using CatalogService.Domain;
 
-namespace CatalogService.Application.Items.Get
+namespace CatalogService.Application.Items.Queries.Get
 {
     public class GetItemsQuery : IRequest<Result<IEnumerable<Item>>>
     {

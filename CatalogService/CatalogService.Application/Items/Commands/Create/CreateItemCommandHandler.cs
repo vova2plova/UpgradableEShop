@@ -1,7 +1,7 @@
 ﻿using CatalogService.Application.UOW;
 using CatalogService.Domain;
 
-namespace CatalogService.Application.Items.CreateItem
+namespace CatalogService.Application.Items.Commands.Create
 {
     /// <summary>
     /// Обработчик команды создания товара
